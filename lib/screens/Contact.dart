@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts_arabic/fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Contact extends StatefulWidget {
+  TextStyle textStyleTitle;
+  Contact({
+    @required this.textStyleTitle,
+  });
   @override
   _ContactState createState() => _ContactState();
 }
 
 class _ContactState extends State<Contact> {
-/*
   void _launchUrl(String Url) async {
     if (await canLaunch(Url)) {
       await launch(Url);
@@ -25,26 +28,10 @@ class _ContactState extends State<Contact> {
     var _email = "mailto:$email";
     _launchUrl(_email);
   }
-*/
+
   @override
-  TextStyle _text_HomePages = TextStyle(
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-    letterSpacing: 1,
-    fontWeight: FontWeight.w500,
-    color: Colors.black,
-    fontSize: 16,
-  );
-   TextStyle _contact = TextStyle(
-      fontSize: 17,
-      fontWeight: FontWeight.w700,
-      color: Colors.blue,
-      fontFamily: ArabicFonts.Cairo,
-      package: 'google_fonts_arabic',
-    );
- 
   Widget build(BuildContext context) {
-     return SafeArea(
+    return SafeArea(
       child: Scaffold(
         body: ListView(
           children: <Widget>[
@@ -60,7 +47,7 @@ class _ContactState extends State<Contact> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
                 '❤️😂هم حبشكلات العيد',
-                style: _text_HomePages,
+                style: widget.textStyleTitle,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -72,7 +59,7 @@ class _ContactState extends State<Contact> {
               '\n'
               '\n'
               ' البريد الالكتروني ',
-              style: _text_HomePages,
+              style: widget.textStyleTitle,
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -80,11 +67,16 @@ class _ContactState extends State<Contact> {
             ),
             InkWell(
               onTap: () {
-                // _launchEmail("muayadmohammed3@gmail.com");
+                _launchEmail("muayadmohammed3@gmail.com");
               },
               child: Text(
                 'muayadmohmmed3@gmail.com',
-                style: _contact,
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Montserrat',
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -93,26 +85,36 @@ class _ContactState extends State<Contact> {
             ),
             Text(
               ': او اتصل على ',
-              style: _text_HomePages,
+              style: widget.textStyleTitle,
               textAlign: TextAlign.center,
             ),
             InkWell(
               onTap: () {
-                // _launchCall("07712218579");
+                _launchCall("07712218579");
               },
               child: Text(
                 '07712218579',
-                style: _contact,
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Montserrat',
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
             InkWell(
               onTap: () {
-                // _launchCall('07808816034');
+                _launchCall('07808816034');
               },
               child: Text(
                 '07808816034',
-                style: _contact,
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Montserrat',
+                ),
                 textAlign: TextAlign.center,
               ),
             ),

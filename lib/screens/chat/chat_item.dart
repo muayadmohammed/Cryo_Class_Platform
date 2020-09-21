@@ -1,5 +1,4 @@
-
-import 'package:finalApp/HomWork/hom2.dart';
+import '../chat/conversation.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,7 +10,8 @@ class ChatItem extends StatefulWidget {
   final String msg;
   final bool isOnline;
   final int counter;
-
+  TextStyle textStyleTitle, textStyleDes, textStyleSearch;
+ 
   ChatItem({
     Key key,
     @required this.dp,
@@ -20,6 +20,8 @@ class ChatItem extends StatefulWidget {
     @required this.msg,
     @required this.isOnline,
     @required this.counter,
+    @required this.textStyleTitle,
+      @required this.textStyleDes,
   }) : super(key: key);
 
   @override
@@ -73,9 +75,7 @@ class _ChatItemState extends State<ChatItem> {
         title: Text(
           "${widget.name}",
           maxLines: 1,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style:  widget.textStyleTitle,
         ),
         subtitle: Text(
           "${widget.msg}",
@@ -88,10 +88,7 @@ class _ChatItemState extends State<ChatItem> {
             SizedBox(height: 10),
             Text(
               "${widget.time}",
-              style: TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: 11,
-              ),
+              style:  widget.textStyleDes,
             ),
 
             SizedBox(height: 5),
@@ -111,10 +108,7 @@ class _ChatItemState extends State<ChatItem> {
                 padding: EdgeInsets.only(top: 1, left: 5, right: 5),
                 child:Text(
                   "${widget.counter}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                  ),
+                  style:  widget.textStyleDes,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -125,7 +119,7 @@ class _ChatItemState extends State<ChatItem> {
           Navigator.of(context, rootNavigator: true).push(
             MaterialPageRoute(
               builder: (BuildContext context){
-                return Conversation();
+                return Conversation(textStyleDes: widget.textStyleDes,);
               },
             ),
           );

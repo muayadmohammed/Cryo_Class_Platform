@@ -1,9 +1,8 @@
 import 'dart:async';
-
+import 'main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'Auth/Login.dart';
-import 'main_screen.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -16,25 +15,25 @@ class _LoadingState extends State<Loading> {
 
     _mockCheckForSession().then((status) {
       if (status) {
-        _navigateToHome();
+       _navigateToLogin(); 
       } else {
-        _navigateToLogin();
+        _navigateToHome();
       }
     });
   }
-
+//muayad mohammed
   Future<bool> _mockCheckForSession() async {
     await Future.delayed(Duration(milliseconds: 5000), () {});
 
     return true;
   }
 
-  void _navigateToHome() {
+  void _navigateToLogin() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Login()));
   }
 
-  void _navigateToLogin() {
+  void _navigateToHome() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => MainScreen()));
   }

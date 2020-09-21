@@ -1,12 +1,10 @@
-
-import 'package:finalApp/HomWork/homwork.dart';
-import 'package:finalApp/components/icon_badge.dart';
-import 'package:finalApp/screens/profile.dart';
+import './home_work/home_work.dart';
+import '../components/icon_badge.dart';
+import 'profile.dart';
 import 'package:flutter/material.dart';
 
-
 import 'chat/chats.dart';
-import 'home.dart';
+import 'Home/home.dart';
 import 'notifications.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,7 +15,26 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   PageController _pageController;
   int _page = 2;
-
+  TextStyle textStyleTitle = TextStyle(
+    color: Colors.black,
+    fontSize: 17,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Montserrat',
+  );
+  TextStyle textStyleDes = TextStyle(
+    color: Colors.grey[800],
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Montserrat',
+  );
+  TextStyle textStyleSearch = TextStyle(
+    color: Colors.grey[600],
+    fontSize: 16,
+    fontWeight: FontWeight.w300,
+    // fontFamily: 'bein1',
+    fontFamily: 'Montserrat',
+    // fontStyle: FontStyle.italic,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,18 +43,25 @@ class _MainScreenState extends State<MainScreen> {
         controller: _pageController,
         onPageChanged: onPageChanged,
         children: <Widget>[
-          Chats(),
-          HomeWork(),
-          Home(),
-          Notifications(),
-          Profile(),
+          Chats( textStyleTitle: textStyleTitle,
+            textStyleDes: textStyleDes,
+            textStyleSearch: textStyleSearch,),
+          Homework(textStyleTitle: textStyleTitle,
+            textStyleDes: textStyleDes,),
+          Home(
+            textStyleTitle: textStyleTitle,
+            textStyleDes: textStyleDes,
+            textStyleSearch: textStyleSearch,
+          ),
+          Notifications( textStyleTitle: textStyleTitle,
+            textStyleDes: textStyleDes,
+           ),
+          Profile( textStyleDes: textStyleDes,),
         ],
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-          // sets the background color of the `BottomNavigationBar`
           canvasColor: Theme.of(context).primaryColor,
-          // sets the active color of the `BottomNavigationBar` if `Brightness` is light
           primaryColor: Theme.of(context).accentColor,
           textTheme: Theme.of(context).textTheme.copyWith(
                 caption: TextStyle(color: Colors.grey[500]),

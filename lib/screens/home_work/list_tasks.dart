@@ -1,21 +1,27 @@
-
-import 'package:finalApp/screens/NavigationDrawer.dart';
+import '../navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
-
-class ViewTask extends StatefulWidget {
+class ListTasks extends StatefulWidget {
+  TextStyle textStyleTitle, textStyleDes;
+  ListTasks({
+    @required this.textStyleTitle,
+    @required this.textStyleDes,
+  });
   @override
-  _ViewTaskState createState() => _ViewTaskState();
+  _ListTasksState createState() => _ListTasksState();
 }
 
-class _ViewTaskState extends State<ViewTask> {
+class _ListTasksState extends State<ListTasks> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tasks'),
+        title: Text(
+          'Tasks',
+          style: widget.textStyleTitle,
+        ),
         centerTitle: true,
         elevation: 4,
       ),
@@ -25,8 +31,8 @@ class _ViewTaskState extends State<ViewTask> {
         child: Container(
           width: size.width,
           height: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 180
-                  : 140,
+              ? 180
+              : 140,
           decoration: BoxDecoration(
             color: Colors.white, //(0XFF667EEA),
             borderRadius: BorderRadius.circular(20),
@@ -43,9 +49,10 @@ class _ViewTaskState extends State<ViewTask> {
             children: [
               Container(
                 width: size.width,
-                height: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 90
-                  : 76,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 90
+                        : 76,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -59,7 +66,10 @@ class _ViewTaskState extends State<ViewTask> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Upload Files'),
+                      Text(
+                        'Upload Files',
+                        style: widget.textStyleDes,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -79,9 +89,10 @@ class _ViewTaskState extends State<ViewTask> {
               // ),
               Container(
                 width: size.width,
-                height: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 90
-                  : 64,
+                height:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 90
+                        : 64,
                 decoration: BoxDecoration(
                   border: Border.all(width: 1.2, color: Colors.grey),
                   color: Colors.white,
@@ -92,9 +103,20 @@ class _ViewTaskState extends State<ViewTask> {
                       bottomRight: Radius.circular(10)),
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    for (int momo = 10; momo >= 0; momo--) {
+                      print('momo  $momo');
+                    }
+                  },
                   child: Center(
-                    child: Text('Submit'),
+                    child: Text('Submit',
+                        style: TextStyle(
+                          color: Colors.blueAccent[700],
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Montserrat',
+                        ) //widget.textStyleTitle,
+                        ),
                   ),
                 ),
               ),
@@ -111,74 +133,75 @@ class _ViewTaskState extends State<ViewTask> {
               height: 10,
             ),
             Container(
-              height: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? size.height / 3.5
-                  : size.height / 2, // width: 100,
-
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey[500],
-
                     spreadRadius: 5,
-
                     blurRadius: 7,
-
                     offset: Offset(0, 3), // changes position of shadow
                   ),
                 ],
               ),
-
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: size.width / 2 - 18,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(0),
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(0)),
-                    ),
                     child: Padding(
                       padding:
                           const EdgeInsets.only(top: 5, left: 8, bottom: 5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Name '),
                           SizedBox(
                             height: 10,
                           ),
-                          Text('Dec ....'),
+                          Text(
+                            'Name ',
+                            style: widget.textStyleDes,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Dec ....',
+                            style: widget.textStyleDes,
+                          ),
                         ],
                       ),
                     ),
                   ),
                   Container(
-                    width: size.width / 2 - 18,
-                    decoration: BoxDecoration(
-                      // color: Colors.blueGrey,
+                    // width: size.width / 2 - 18,
 
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(10),
-                          bottomLeft: Radius.circular(0),
-                          bottomRight: Radius.circular(10)),
-                    ),
                     child: Padding(
                       padding:
                           const EdgeInsets.only(top: 5, bottom: 5, right: 10),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text('12:00 AM'),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text('12/2/2021'),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text('12:00 AM'),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text('20/2/2021'),
+                          SizedBox(
+                            height: 10,
+                          ),
                         ],
                       ),
                     ),

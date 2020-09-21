@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ChatBubble extends StatefulWidget {
 
-
+  TextStyle textStyleDes;
   final String message, time, username, type, replyText, replyName;
   final bool isMe, isGroup, isReply;
 
@@ -17,7 +17,8 @@ class ChatBubble extends StatefulWidget {
     @required this.type,
     @required this.replyText,
     @required this.isReply,
-    @required this.replyName});
+    @required this.replyName,
+    @required this.textStyleDes,});
 
 
   @override
@@ -91,11 +92,7 @@ class _ChatBubbleState extends State<ChatBubble> {
                 child: Container(
                   child: Text(
                     widget.username,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: colors[rNum],
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style:widget.textStyleDes,
                     textAlign: TextAlign.left,
                   ),
                   alignment: Alignment.centerLeft,
@@ -124,11 +121,7 @@ class _ChatBubbleState extends State<ChatBubble> {
                       Container(
                         child: Text(
                           widget.isMe?"You":widget.replyName,
-                          style: TextStyle(
-                            color: Theme.of(context).accentColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
+                          style:widget.textStyleDes,
                           maxLines: 1,
                           textAlign: TextAlign.left,
                         ),
@@ -159,11 +152,7 @@ class _ChatBubbleState extends State<ChatBubble> {
                 child: widget.type == "text"? !widget.isReply
                     ?Text(
                   widget.message,
-                  style:  TextStyle(
-                    color: widget.isMe
-                        ? Colors.white
-                        : Theme.of(context).textTheme.title.color,
-                  ),
+                  style:widget.textStyleDes,
                 )
                     :Container(
                   alignment: Alignment.centerLeft,
@@ -192,10 +181,7 @@ class _ChatBubbleState extends State<ChatBubble> {
               :EdgeInsets.only(left: 10, bottom: 10.0,),
           child: Text(
             widget.time,
-            style: TextStyle(
-              color: Theme.of(context).textTheme.title.color,
-              fontSize: 10.0,
-            ),
+            style: widget.textStyleDes,
           ),
         ),
       ],

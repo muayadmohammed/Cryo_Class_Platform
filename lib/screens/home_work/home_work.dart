@@ -1,17 +1,22 @@
+import 'required.dart';
+import '../navigation_drawer.dart';
 
-import 'package:finalApp/HomWork/chat_item.dart';
-import 'package:finalApp/screens/NavigationDrawer.dart';
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 
 import 'Missing.dart';
 
-class HomeWork extends StatefulWidget {
+class Homework extends StatefulWidget {
+  TextStyle textStyleTitle, textStyleDes;
+  Homework({
+    @required this.textStyleTitle,
+    @required this.textStyleDes,
+  });
   @override
-  _HomeWorkState createState() => _HomeWorkState();
+  _HomeworkState createState() => _HomeworkState();
 }
 
-class _HomeWorkState extends State<HomeWork>
+class _HomeworkState extends State<Homework>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _tabController;
 
@@ -26,9 +31,12 @@ class _HomeWorkState extends State<HomeWork>
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeWork'),
-       centerTitle: true,
-       elevation: 4,
+        title: Text(
+          'HomeWork',
+          style: widget.textStyleTitle,
+        ),
+        centerTitle: true,
+        elevation: 4,
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: Theme.of(context).accentColor,
@@ -63,15 +71,9 @@ class _HomeWorkState extends State<HomeWork>
             },
             itemCount: chats.length,
             itemBuilder: (BuildContext context, int index) {
-              Map chat = chats[index];
-              return ChatItem(
-                // dp: chat['dp'],
-                // name: chat['name'],
-                // isOnline: chat['isOnline'],
-                // counter: chat['counter'],
-                // msg: chat['msg'],
-                // time: chat['time'],
-              );
+            
+              return Required(textStyleTitle: widget.textStyleTitle,
+            textStyleDes: widget.textStyleDes,);
             },
           ),
           ListView.separated(
@@ -88,20 +90,13 @@ class _HomeWorkState extends State<HomeWork>
             },
             itemCount: active.length,
             itemBuilder: (BuildContext context, int index) {
-              Map chat = active[index];
-              return Misssing(
-                // dp: chat['dp'],
-                // name: chat['name'],
-                // isOnline: chat['isOnline'],
-                // counter: chat['counter'],
-                // msg: chat['msg'],
-                // time: chat['time'],
-              );
+              return Misssing(textStyleTitle: widget.textStyleTitle,
+            textStyleDes: widget.textStyleDes,
+                  );
             },
           ),
         ],
       ),
-     
     );
   }
 

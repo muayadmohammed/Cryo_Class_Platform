@@ -1,10 +1,17 @@
 import 'dart:math';
 
-import 'package:finalApp/components/chat_bubble.dart';
 import 'package:finalApp/util/data.dart';
+
+import '../chat/chat_bubble.dart';
+import '../profile.dart';
 import 'package:flutter/material.dart';
 
 class Conversation extends StatefulWidget {
+     TextStyle textStyleDes;
+  Conversation(
+      {
+      @required this.textStyleDes,
+      });
   @override
   _ConversationState createState() => _ConversationState();
 }
@@ -26,6 +33,7 @@ class _ConversationState extends State<Conversation> {
         ),
         titleSpacing: 0,
         title: InkWell(
+          
           child: Row(
             children: <Widget>[
               Padding(
@@ -60,7 +68,15 @@ class _ConversationState extends State<Conversation> {
               ),
             ],
           ),
-          onTap: () {},
+          onTap: () {
+                Navigator.of(context, rootNavigator: true).push(
+            MaterialPageRoute(
+              builder: (BuildContext context){
+                return Profile( textStyleDes: widget.textStyleDes,);
+              },
+            ),
+          );
+          },
         ),
       
       ),
@@ -87,6 +103,7 @@ class _ConversationState extends State<Conversation> {
                     isGroup: msg['isGroup'],
                     isReply: msg['isReply'],
                     replyName: name,
+                    textStyleDes: widget.textStyleDes,
                   );
                 },
               ),
@@ -110,35 +127,34 @@ class _ConversationState extends State<Conversation> {
                       //   ),
                       //   onPressed: () {},
                       // ),
+                       
                       Directionality(
                         textDirection: TextDirection.rtl,
                                               child: Flexible(
-                          child: TextField(
-                            style: TextStyle(
-                              fontSize: 15.0,
-                              color: Theme.of(context).textTheme.title.color,
-                            ),
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(10.0),
-                              border: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              hintText: "...Write your message",
-                              hintStyle: TextStyle(
+                            child: TextField(
+                              style: TextStyle(
                                 fontSize: 15.0,
                                 color: Theme.of(context).textTheme.title.color,
                               ),
-                            ),
-                            maxLines: null,
-                          ),
-                        ),
-                      ),
-                      IconButton(
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(10.0),
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                hintText: "...Write your message",
+                                hintStyle: widget.textStyleDes,
+                                suffixIcon:IconButton(
                         icon: Icon(
                           Icons.send,
                           color: Theme.of(context).accentColor,
                         ),
                         onPressed: () {},
-                      )
+                      ),
+                              ),
+                              maxLines: null,
+                            ),
+                          ),
+                      ),
+                     
                     ],
                   ),
                 ),

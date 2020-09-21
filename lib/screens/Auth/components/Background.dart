@@ -14,40 +14,42 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 0,
-            left: 0,
-            child: ClipPath(
-              clipper: BottomClipper(),
-              child: Container(
-                height: size.height,
-                width: size.width,
-                color: //Colors.red,
-                Color(0xFF3a506b),
+      body: Center(
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              top: 0,
+              left: 0,
+              child: ClipPath(
+                clipper: BottomClipper(),
+                child: Container(
+                  height: size.height,
+                  width: size.width,
+                  color: //Colors.red,
+                  Color(0xFF3a506b),
+                ),
               ),
             ),
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            child: ClipPath(
-              clipper: TopClipper(),
-              child: Container(
-                height: size.height * 0.40,
-                width: size.width,
-                // decoration:BoxDecoration(
-                //   image: DecorationImage(image:Image.asset())
-                // ),
-                color://Colors.black,
-                 Color(0xFF0b132b),
-                 child: Image.asset('assets/logo.JPG',fit: BoxFit.cover,),
+            Positioned(
+              top: 0,
+              left: 0,
+              child: ClipPath(
+                clipper: TopClipper(),
+                child: Container(
+                  height: size.height * 0.40,
+                  width: size.width,
+                  // decoration:BoxDecoration(
+                  //   image: DecorationImage(image:Image.asset())
+                  // ),
+                  color://Colors.black,
+                   Color(0xFF0b132b),
+                   child: Image.asset('assets/logo.JPG',fit: BoxFit.cover,),
+                ),
               ),
             ),
-          ),
-          child,
-        ],
+            child,
+          ],
+        ),
       ),
     );
   }

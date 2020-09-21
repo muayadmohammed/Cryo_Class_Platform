@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 
-class Comment1 extends StatefulWidget {
+class Comment extends StatefulWidget {
+  final TextStyle textStyleTitle, textStyleDes;
+  Comment({
+    @required this.textStyleTitle,
+    @required this.textStyleDes,
+  });
   @override
-  _Comment1State createState() => _Comment1State();
+  _CommentState createState() => _CommentState();
 }
 
-class _Comment1State extends State<Comment1> {
+class _CommentState extends State<Comment> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Comment'),
+        title: Text(
+          'Comment',
+          style: widget.textStyleTitle,
+        ),
         centerTitle: true,
         elevation: 4,
       ),
@@ -54,7 +62,7 @@ class _Comment1State extends State<Comment1> {
                                         height: 10,
                                       ),
                                       Container(
-                                        height: 94,
+                                        // height: 94,
                                         width: size.width,
                                         decoration: BoxDecoration(
                                             color: Colors.white,
@@ -80,48 +88,46 @@ class _Comment1State extends State<Comment1> {
                                                   const EdgeInsets.only(top: 7),
                                               child: Column(
                                                 children: [
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
                                                   Container(
                                                     width: size.width / 2.2,
                                                     child: Text(
                                                       'Name of Student',
-                                                      style: TextStyle(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                                      style:
+                                                          widget.textStyleDes,
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    height: 5,
+                                                    height: 8,
                                                   ),
                                                   Container(
                                                     width: size.width / 2.2,
                                                     child: Text(
-                                                      'Description',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w300),
+                                                      'Description\nيكبر ويصغر حسب المحتوى',
+                                                      style:
+                                                          widget.textStyleDes,
                                                     ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 15,
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             Align(
-                                              alignment: Alignment.bottomLeft,
+                                              // alignment: Alignment.topRight,
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
-                                                    right: 10, bottom: 10),
-                                                child: Container(
-                                                  height: 20,
-
-                                                  // color: Colors.black,
-                                                  child: Text(
-                                                    '12:09 AM',
-                                                    style: TextStyle(
-                                                        color:
-                                                            Color(0XFF798186),
-                                                        fontSize: 12),
-                                                  ),
-                                                ),
+                                                    right: 10, bottom: 0),
+                                                child: Text('12:09 AM',
+                                                    style: widget.textStyleDes
+                                                    // TextStyle(
+                                                    //     color:
+                                                    //         Color(0XFF798186),
+                                                    //     fontSize: 12),
+                                                    ),
                                               ),
                                             ),
                                           ],
@@ -138,7 +144,7 @@ class _Comment1State extends State<Comment1> {
                 ],
               ),
               Positioned(
-                  bottom: 0,
+                  bottom: 3,
                   right: 10,
                   left: 10,
                   child: Container(

@@ -1,11 +1,16 @@
-
-import 'package:finalApp/components/chat_item.dart';
 import 'package:finalApp/util/data.dart';
+
+import '../chat/chat_item.dart';
 import 'package:flutter/material.dart';
 
-import '../NavigationDrawer.dart';
+import '../navigation_drawer.dart';
 
 class Chats extends StatefulWidget {
+    TextStyle textStyleTitle, textStyleDes, textStyleSearch;
+  Chats(
+      {@required this.textStyleTitle,
+      @required this.textStyleDes,
+      @required this.textStyleSearch});
   @override
   _ChatsState createState() => _ChatsState();
 }
@@ -28,6 +33,7 @@ class _ChatsState extends State<Chats>
         title: TextField(
           decoration: InputDecoration.collapsed(
             hintText: 'Search',
+            hintStyle: widget.textStyleSearch
           ),
         ),
        elevation: 4,
@@ -73,6 +79,8 @@ class _ChatsState extends State<Chats>
                 counter: chat['counter'],
                 msg: chat['msg'],
                 time: chat['time'],
+                textStyleTitle: widget.textStyleTitle,
+            textStyleDes: widget.textStyleDes,
               );
             },
           ),
@@ -98,20 +106,14 @@ class _ChatsState extends State<Chats>
                 counter: chat['counter'],
                 msg: chat['msg'],
                 time: chat['time'],
+                textStyleTitle: widget.textStyleTitle,
+            textStyleDes: widget.textStyleDes,
               );
             },
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        onPressed: () {
-
-        },
-      ),
+    
     );
   }
 

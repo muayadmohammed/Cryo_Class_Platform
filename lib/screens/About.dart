@@ -2,38 +2,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:google_fonts_arabic/fonts.dart';
-import 'NavigationDrawer.dart';
+
+import 'navigation_drawer.dart';
 
 class About extends StatefulWidget {
+     TextStyle textStyleTitle, textStyleDes;
+  About({
+    @required this.textStyleTitle,
+    @required this.textStyleDes,
+  });
   @override
   _AboutState createState() => _AboutState();
 }
 
 class _AboutState extends State<About> {
-  TextStyle _title = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-  );
-  TextStyle t = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Color(0XFF2699FB),
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-    letterSpacing: 1,
-  );
-  TextStyle t1 = TextStyle(
-    fontSize: 15,
-    color: Color(0XFF707070),
-    fontWeight: FontWeight.w600,
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-    letterSpacing: 1,
-  );
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +28,7 @@ class _AboutState extends State<About> {
           title: Text(
             'About',
             // style: _title,blac
-            style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w400),
+            style: widget.textStyleTitle,
           ),
           centerTitle: true,
         ),
@@ -75,7 +55,7 @@ class _AboutState extends State<About> {
                       child: Text(
                         '❤️😂حبشكلات العيد',
                         textAlign: TextAlign.center,
-                        style: t1,
+                        style:  widget.textStyleTitle,
                         maxLines: 7,
                         // minFontSize: 13,
                       ),

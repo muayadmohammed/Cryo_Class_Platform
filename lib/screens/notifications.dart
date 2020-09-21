@@ -2,8 +2,12 @@
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 
-import 'NavigationDrawer.dart';
+import 'navigation_drawer.dart';
 class Notifications extends StatefulWidget {
+    TextStyle textStyleTitle, textStyleDes;
+  Notifications(
+      {@required this.textStyleTitle,
+      @required this.textStyleDes,});
   @override
   _NotificationsState createState() => _NotificationsState();
 }
@@ -14,7 +18,7 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Notifications",
+          "Notifications",style: widget.textStyleTitle,
         ),
         centerTitle: true,
        
@@ -45,13 +49,10 @@ class _NotificationsState extends State<Notifications> {
                 radius: 25,
               ),
               contentPadding: EdgeInsets.all(0),
-              title: Text(notif['notif']),
+              title: Text(notif['notif'], style: widget.textStyleDes),
               trailing: Text(
                 notif['time'],
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 11,
-                ),
+                style: widget.textStyleDes
               ),
               onTap: () {},
             ),

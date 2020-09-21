@@ -1,38 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts_arabic/fonts.dart';
-import 'NavigationDrawer.dart';
+import 'navigation_drawer.dart';
 
 class FeedBack extends StatefulWidget {
+    TextStyle textStyleTitle, textStyleDes;
+  FeedBack({
+    @required this.textStyleTitle,
+    @required this.textStyleDes,
+  });
   @override
   _FeedBackState createState() => _FeedBackState();
 }
 
 class _FeedBackState extends State<FeedBack> {
-  TextStyle _title = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-  );
-  TextStyle t1 = TextStyle(
-    fontSize: 15,
-    color: Color(0XFF707070),
-    fontWeight: FontWeight.w600,
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-    letterSpacing: 1,
-  );
-  TextStyle t = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-    letterSpacing: 1,
-  );
-
+ 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,7 +23,7 @@ class _FeedBackState extends State<FeedBack> {
           // iconTheme: IconThemeData(color: Colors.black),
           title: Text(
             'Feedback',
-            style: TextStyle(color: Colors.black, fontFamily: 'Montserrat',fontWeight: FontWeight.w400),
+            style: widget.textStyleTitle,//TextStyle(color: Colors.black, fontFamily: 'Montserrat',fontWeight: FontWeight.w400),
             // style: _title,
           ),
           centerTitle: true, elevation: 4,
@@ -74,8 +55,7 @@ class _FeedBackState extends State<FeedBack> {
                         children: <Widget>[
                           Text(
                             'Full Name',
-                            style: TextStyle(
-                                color: Colors.black, fontFamily: 'Montserrat'),
+                            style: widget.textStyleDes,
                           ),
                           Icon(
                             Icons.person_outline,
@@ -97,9 +77,7 @@ class _FeedBackState extends State<FeedBack> {
                         children: <Widget>[
                           Text(
                             "Email or Phone",
-                            style: TextStyle(
-                                color: Colors.black, fontFamily: 'Montserrat'),
-                            textAlign: TextAlign.right,
+                            style: widget.textStyleDes,
                           ),
                           Icon(
                             Icons.mail_outline,
@@ -119,9 +97,7 @@ class _FeedBackState extends State<FeedBack> {
                         children: <Widget>[
                           Text(
                             "Massege",
-                            style: TextStyle(
-                                color: Colors.black, fontFamily: 'Montserrat'),
-                          ),
+                            style: widget.textStyleDes,),
                           Icon(
                             Icons.message,
                             color: Colors.blue,
@@ -135,20 +111,7 @@ class _FeedBackState extends State<FeedBack> {
                       SizedBox(
                         height: 40,
                       ),
-                      // Center(
-                      //   child: Container(
-                      //     height: 50,
-                      //     width: 200,
-                      //     decoration: BoxDecoration(
-                      //         color: Colors.blue,
-                      //         borderRadius: BorderRadius.circular(20)),
-                      //     child: Text(
-                      //       'Send',
-                      //       textAlign: TextAlign.center,
-                      //       style: _title,
-                      //     ),
-                      //   ),
-                      // ),
+                     
                       Center(
                         child: Container(
                             height: 50.0,
@@ -163,10 +126,7 @@ class _FeedBackState extends State<FeedBack> {
                                 child: Center(
                                   child: Text(
                                     'Send',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Montserrat'),
-                                  ),
+                                    style: widget.textStyleTitle,                                  ),
                                 ),
                               ),
                             )),
