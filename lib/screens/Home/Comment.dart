@@ -156,24 +156,21 @@ class _CommentState extends State<Comment> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              errorBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              hintText: 'Comment',
-                              hintStyle: TextStyle(color: Colors.white),
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                  Icons.send,
-                                  color: Color(0XFF07094D),
-                                ),
-                                onPressed: () {},
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            hintText: 'Comment',
+                            hintStyle: TextStyle(color: Colors.white),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.send,
+                                color: Color(0XFF07094D),
                               ),
+                              onPressed: () {},
                             ),
                           ),
                         ),

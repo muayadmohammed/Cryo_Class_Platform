@@ -1,6 +1,8 @@
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 
+import 'evaluation.dart';
+
 class Misssing extends StatefulWidget {
   TextStyle textStyleTitle, textStyleDes;
   Misssing({
@@ -45,11 +47,13 @@ class _MisssingState extends State<Misssing> {
                           textAlign: TextAlign.center,
                           style: widget.textStyleDes)),
                   onTap: () {
-
-
-
-print('momo');
-                    
+                    print(size.height);
+                    print(size.width);
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => Evaluation(
+                              textStyleTitle: widget.textStyleTitle,
+                              textStyleDes: widget.textStyleDes,
+                            )));
                   },
                 ),
                 Divider(

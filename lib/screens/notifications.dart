@@ -42,12 +42,41 @@ class _NotificationsState extends State<Notifications> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage(
-                  notif['dp'],
-                ),
-                radius: 25,
+              leading: Stack(
+                alignment: Alignment.bottomRight,
+                // fit: StackFit.loose,
+                children: [
+                  Container(
+                    width: 55,
+                    height: 55,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(30),
+                        image: DecorationImage(
+                          image: AssetImage(
+                            notif['dp'],
+                          ),
+                          fit: BoxFit.cover,
+                        )),
+                  ),
+                  Container(
+                    width: 25,
+                    height: 25,
+                    decoration: BoxDecoration(
+                      color: Color(0XFF5d6165),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Center(
+                        child: notif['icon']),
+                  ),
+                ],
               ),
+              // leading: CircleAvatar(
+              //   backgroundImage: AssetImage(
+              //     notif['dp'],
+              //   ),
+              //   radius: 25,
+              // ),
               contentPadding: EdgeInsets.all(0),
               title: Text(notif['notif'], style: widget.textStyleDes),
               trailing: Text(
