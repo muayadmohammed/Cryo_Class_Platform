@@ -1,4 +1,6 @@
-import 'required.dart';
+import 'package:finalApp/screens/home_work/add_task.dart';
+
+import 'task.dart';
 import '../navigation_drawer.dart';
 
 import 'package:finalApp/util/data.dart';
@@ -6,17 +8,17 @@ import 'package:flutter/material.dart';
 
 import 'Missing.dart';
 
-class Homework extends StatefulWidget {
+class HomeTasks extends StatefulWidget {
   TextStyle textStyleTitle, textStyleDes;
-  Homework({
+  HomeTasks({
     @required this.textStyleTitle,
     @required this.textStyleDes,
   });
   @override
-  _HomeworkState createState() => _HomeworkState();
+  _HomeTasksState createState() => _HomeTasksState();
 }
 
-class _HomeworkState extends State<Homework>
+class _HomeTasksState extends State<HomeTasks>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _tabController;
 
@@ -32,9 +34,24 @@ class _HomeworkState extends State<Homework>
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'HomeWork',
+          'Task',
           style: widget.textStyleTitle,
         ),
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.add,
+                color: Colors.lightBlue,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => AddTask(
+                        textStyleTitle: widget.textStyleTitle,
+                        textStyleDes: widget.textStyleDes,
+                        )));
+              }),
+        ],
         centerTitle: true,
         elevation: 4,
         bottom: TabBar(
@@ -45,10 +62,10 @@ class _HomeworkState extends State<Homework>
           isScrollable: false,
           tabs: <Widget>[
             Tab(
-              text: "Required",
+              text: "Tasks",
             ),
             Tab(
-              text: "Missing",
+              text: "Done",
             ),
           ],
         ),
@@ -71,9 +88,8 @@ class _HomeworkState extends State<Homework>
             },
             itemCount: chats.length,
             itemBuilder: (BuildContext context, int index) {
-            
-              return Required(textStyleTitle: widget.textStyleTitle,
-            textStyleDes: widget.textStyleDes,);
+              return //AddTask();
+                  Task(textStyleTitle: widget.textStyleTitle,textStyleDes: widget.textStyleDes,);
             },
           ),
           ListView.separated(
@@ -90,9 +106,10 @@ class _HomeworkState extends State<Homework>
             },
             itemCount: active.length,
             itemBuilder: (BuildContext context, int index) {
-              return Misssing(textStyleTitle: widget.textStyleTitle,
-            textStyleDes: widget.textStyleDes,
-                  );
+              return Misssing(
+                textStyleTitle: widget.textStyleTitle,
+                textStyleDes: widget.textStyleDes,
+              );
             },
           ),
         ],

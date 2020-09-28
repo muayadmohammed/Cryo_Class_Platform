@@ -8,6 +8,7 @@ List names = [
   "Bryant Marley",
   "Rosalva Sadberry",
   "Guadalupe Ratledge",
+  "Muayad Mohammed",
   "Brandy Gazda",
   "Kurt Toms",
   "Rosario Gathright",
@@ -42,14 +43,24 @@ List notifs = [
   "${names[random.nextInt(10)]} Tagged you and ${random.nextInt(100)} others in a post",
   "${names[random.nextInt(10)]} Sent you a friend request",
 ];
-
+List subject = [
+  "Subject 1",
+  "Subject 2",
+  "Subject 3",
+];
 List notifications = List.generate(
+    13,
+    (index) => {
+          "dp": "assets/cm${random.nextInt(10)}.jpeg",
+          "time": "${random.nextInt(50)} min ago",
+          "notif": notifs[random.nextInt(10)]
+        });
+List task = List.generate(
     13,
     (index) => {
           "name": names[random.nextInt(10)],
           "dp": "assets/cm${random.nextInt(10)}.jpeg",
-          "time": "${random.nextInt(50)} min ago",
-          "notif": notifs[random.nextInt(10)]
+          "subj": subject[random.nextInt(3)],
         });
 List homework = List.generate(
     13,

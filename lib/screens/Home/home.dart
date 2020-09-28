@@ -7,10 +7,17 @@ import 'add_subject.dart';
 
 class Home extends StatefulWidget {
   TextStyle textStyleTitle, textStyleDes, textStyleSearch;
+  String name,desc,link;
+  bool flink;
   Home(
-      {@required this.textStyleTitle,
-      @required this.textStyleDes,
-      @required this.textStyleSearch});
+      {@optionalTypeArgs this.textStyleTitle,
+      @optionalTypeArgs this.textStyleDes,
+      @optionalTypeArgs this.textStyleSearch,
+      @optionalTypeArgs this.name,
+      @optionalTypeArgs this.desc,
+      @optionalTypeArgs this.link,
+      @optionalTypeArgs this.flink,
+      });
   @override
   _HomeState createState() => _HomeState();
 }

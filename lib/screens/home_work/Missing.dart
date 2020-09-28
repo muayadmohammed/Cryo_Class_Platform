@@ -1,3 +1,4 @@
+import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 
 class Misssing extends StatefulWidget {
@@ -16,96 +17,53 @@ class _MisssingState extends State<Misssing> {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 30,
-            itemBuilder: (BuildContext ctxt, int index) {
-              return Container(
-                  child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 10, //task.length,
+        itemBuilder: (BuildContext ctxt, int index) {
+          Map tasks = task[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+            child: ListView(
+              children: [
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: AssetImage(
+                      tasks['dp'],
+                    ),
+                    radius: 25,
                   ),
-                  Container(
-                    // width: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey[300],
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 5, left: 8, bottom: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Name ',
-                                  style: widget.textStyleDes,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Dec ....',
-                                  style: widget.textStyleDes,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          
-                       
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 5, bottom: 5, right: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [  SizedBox(
-                                  height: 10,
-                                ),
-                                Text('12:00 AM'),  SizedBox(
-                                  height: 10,
-                                ),
-                                Text('12/2/2021'),  SizedBox(
-                                  height: 10,
-                                ),
-                                Text('12:00 AM'),  SizedBox(
-                                  height: 10,
-                                ),
-                                Text('20/2/2021'),  SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ));
-            }));
+                  contentPadding: EdgeInsets.all(0),
+                  title: Container(
+                      width: size.width / 3.5,
+                      child: Text(tasks['name'], style: widget.textStyleDes)),
+                  trailing: Container(
+                      width: size.width / 3.5,
+                      child: Text(tasks['subj'],
+                          textAlign: TextAlign.center,
+                          style: widget.textStyleDes)),
+                  onTap: () {
+
+
+
+print('momo');
+                    
+                  },
+                ),
+                Divider(
+                  endIndent: 0,
+                  indent: 0,
+                  height: 0,
+                ),
+              ],
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+            ),
+          );
+        },
+      ),
+    );
   }
 }

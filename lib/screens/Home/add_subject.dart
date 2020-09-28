@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+import 'home.dart';
+
 class AddSubject extends StatefulWidget {
   @override
   _AddSubjectState createState() => _AddSubjectState();
@@ -22,7 +24,6 @@ class _AddSubjectState extends State<AddSubject> {
           Padding(
             padding: const EdgeInsets.all(10),
             child: Container(
-                // height: 30,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10.0),
@@ -31,16 +32,14 @@ class _AddSubjectState extends State<AddSubject> {
                       color: Colors.grey[300],
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),
                 child: Column(
                   children: [
                     Container(
-                      // height: 30,
                       width: size.width - 10,
-                      // color: Colors.cyan,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: TextField(
@@ -54,19 +53,16 @@ class _AddSubjectState extends State<AddSubject> {
                             // hintStyle: widget.textStyleSearch,
                           ),
                         ),
-                 
                       ),
                     ),
                     Divider(),
-                   
                     Container(
                       // height: 30,
                       width: size.width - 10,
                       // color: Colors.cyan,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: 
-                        TextField(
+                        child: TextField(
                           decoration: InputDecoration(
                             hintText: 'Description...',
                             border: InputBorder.none,
@@ -79,7 +75,6 @@ class _AddSubjectState extends State<AddSubject> {
                         ),
                       ),
                     ),
-                  
                     Divider(),
                     Container(
                       height: 40,
@@ -96,14 +91,27 @@ class _AddSubjectState extends State<AddSubject> {
                             Container(
                                 child: Row(
                               children: [
-                                InkWell(onTap: () {}, child: Text('Cancel')),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                Home()));
+                                  },
+                                  child: Text('Cancel'),
+                                ),
                                 SizedBox(
                                   width: 15,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 2),
                                   child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  Home()));
+                                    },
                                     child: Container(
                                       width: 45,
                                       height: 40,

@@ -1,4 +1,4 @@
-import './home_work/home_work.dart';
+import 'home_work/home_tasks.dart';
 import '../components/icon_badge.dart';
 import 'profile.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +46,10 @@ class _MainScreenState extends State<MainScreen> {
           Chats( textStyleTitle: textStyleTitle,
             textStyleDes: textStyleDes,
             textStyleSearch: textStyleSearch,),
-          Homework(textStyleTitle: textStyleTitle,
-            textStyleDes: textStyleDes,),
+          HomeTasks(
+            textStyleTitle: textStyleTitle,
+            textStyleDes: textStyleDes,
+            ),
           Home(
             textStyleTitle: textStyleTitle,
             textStyleDes: textStyleDes,

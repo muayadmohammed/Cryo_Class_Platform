@@ -1,6 +1,7 @@
 import './screens/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'screens/home_work/home_tasks.dart';
 import 'util/theme_config.dart';
 
 void main() async {
