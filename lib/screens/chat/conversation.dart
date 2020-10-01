@@ -7,11 +7,10 @@ import '../profile.dart';
 import 'package:flutter/material.dart';
 
 class Conversation extends StatefulWidget {
-     TextStyle textStyleDes;
-  Conversation(
-      {
-      @required this.textStyleDes,
-      });
+  TextStyle textStyleDes;
+  Conversation({
+    @required this.textStyleDes,
+  });
   @override
   _ConversationState createState() => _ConversationState();
 }
@@ -33,7 +32,6 @@ class _ConversationState extends State<Conversation> {
         ),
         titleSpacing: 0,
         title: InkWell(
-          
           child: Row(
             children: <Widget>[
               Padding(
@@ -69,16 +67,17 @@ class _ConversationState extends State<Conversation> {
             ],
           ),
           onTap: () {
-                Navigator.of(context, rootNavigator: true).push(
-            MaterialPageRoute(
-              builder: (BuildContext context){
-                return Profile( textStyleDes: widget.textStyleDes,);
-              },
-            ),
-          );
+            Navigator.of(context, rootNavigator: true).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return Profile(
+                    textStyleDes: widget.textStyleDes,
+                  );
+                },
+              ),
+            );
           },
         ),
-      
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -120,41 +119,47 @@ class _ConversationState extends State<Conversation> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      // IconButton(
-                      //   icon: Icon(
-                      //     Icons.add,
-                      //     color: Theme.of(context).accentColor,
-                      //   ),
-                      //   onPressed: () {},
-                      // ),
-                       
-                      Directionality(
-                        textDirection: TextDirection.rtl,
-                                              child: Flexible(
-                            child: TextField(
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Theme.of(context).textTheme.title.color,
-                              ),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(10.0),
-                                border: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                hintText: "...Write your message",
-                                hintStyle: widget.textStyleDes,
-                                suffixIcon:IconButton(
+                      IconButton(
                         icon: Icon(
-                          Icons.send,
+                          Icons.keyboard_voice,
                           color: Theme.of(context).accentColor,
                         ),
                         onPressed: () {},
                       ),
+                      IconButton(
+                          icon: Icon(
+                            Icons.photo_camera,
+                            color: Theme.of(context).accentColor,
+                          ),
+                          onPressed: () {
+                        //       Navigator.of(context).push(MaterialPageRoute(
+                        // builder: (BuildContext context) => (
+                            
+                        //     )));
+                          },),
+                      Flexible(
+                        child: TextField(
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            color: Theme.of(context).textTheme.title.color,
+                          ),
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(10.0),
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            hintText: "Write your message...",
+                            hintStyle: widget.textStyleDes,
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.send,
+                                color: Theme.of(context).accentColor,
                               ),
-                              maxLines: null,
+                              onPressed: () {},
                             ),
                           ),
+                          maxLines: null,
+                        ),
                       ),
-                     
                     ],
                   ),
                 ),

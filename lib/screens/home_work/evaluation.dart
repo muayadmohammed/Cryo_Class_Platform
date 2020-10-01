@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class Evaluation extends StatefulWidget {
+import 'Missing.dart';
+import 'home_tasks.dart';
 
-     TextStyle textStyleTitle, textStyleDes;
+class Evaluation extends StatefulWidget {
+  TextStyle textStyleTitle, textStyleDes;
   Evaluation({
     @required this.textStyleTitle,
     @required this.textStyleDes,
@@ -26,7 +28,10 @@ class _EvaluationState extends State<Evaluation> {
       backgroundColor: Color(0XFFECEFF0),
       appBar: AppBar(
         elevation: 5,
-        title: Text('Evaluation',style: widget.textStyleTitle,),
+        title: Text(
+          'Evaluation',
+          style: widget.textStyleTitle,
+        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -53,7 +58,7 @@ class _EvaluationState extends State<Evaluation> {
                                 height: 10,
                               ),
                               Text(
-                                'Name ',style: widget.textStyleTitle,
+                                'Name ', style: widget.textStyleTitle,
                                 // style: TextStyle(
                                 //   fontSize: 20,
                                 //   fontWeight: FontWeight.bold,
@@ -63,7 +68,7 @@ class _EvaluationState extends State<Evaluation> {
                                 height: 20,
                               ),
                               Text(
-                                'Subject  ',style: widget.textStyleDes,
+                                'Subject  ', style: widget.textStyleDes,
                                 // style: TextStyle(
                                 //   fontSize: 18,
                                 //   fontWeight: FontWeight.w500,
@@ -91,7 +96,7 @@ class _EvaluationState extends State<Evaluation> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Degree:        ${_value.toInt()}',
+                                    'Degree ',
                                     style: TextStyle(
                                       color: Color(0XFF4a4a4a),
                                     ),
@@ -99,12 +104,29 @@ class _EvaluationState extends State<Evaluation> {
                                   SizedBox(
                                     width: 10,
                                   ),
-                                  Slider(
-                                    value: _value,
-                                    onChanged: _setValue,
-                                    min: minValue,
-                                    max: maxValue,
-                                  ),
+                                  // Slider(
+                                  //   value: _value,
+                                  //   onChanged: _setValue,
+                                  //   min: minValue,
+                                  //   max: maxValue,
+                                  // ),
+                                  Container(
+                                    height: 35,
+                                    width: 60,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 0.3,
+                                            color: Colors.grey[900])),
+                                    // color: Colors.teal,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: '0-100',
+                                          // hintStyle: TextStyle()
+                                          ),
+                                      maxLengthEnforced: false,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  )
                                 ],
                               ),
                             ],
@@ -133,19 +155,26 @@ class _EvaluationState extends State<Evaluation> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => HomeTasks(
+                                      textStyleTitle: widget.textStyleTitle,
+                                      textStyleDes: widget.textStyleDes,
+                                    )));
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                                 border: Border.all(
                                     width: 0.1, color: Colors.black)),
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
-                              child: Text('Cancel',
-                                  // style: TextStyle(
-                                  //   fontSize: 14,
-                                  // )
-                                  style: widget.textStyleDes,
-                                  ),
+                              child: Text(
+                                'Cancel',
+                                // style: TextStyle(
+                                //   fontSize: 14,
+                                // )
+                                style: widget.textStyleDes,
+                              ),
                             ),
                           ),
                         ),

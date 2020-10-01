@@ -1,10 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-
 class AddTask extends StatefulWidget {
-    TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitle, textStyleDes;
   AddTask({
     @required this.textStyleTitle,
     @required this.textStyleDes,
@@ -28,7 +29,16 @@ class _AddTaskState extends State<AddTask> {
   String _Hour = '';
   String _Main = '';
   var _intHour;
-  Future<Null> slect(BuildContext context) async {
+  String selectedUser;
+  final List<String> items = <String>['Class 1', 'Class 2', 'Class 3'];
+
+  Future<Null> selectClass(String value) async {
+    setState(() {
+      selectedUser = value;
+    });
+  }
+
+  Future<Null> select(BuildContext context) async {
     _p = await showTimePicker(
       context: context,
       initialTime: _timeOfDay,
@@ -165,13 +175,16 @@ class _AddTaskState extends State<AddTask> {
 
   static const double minValue = 0;
   static const double maxValue = 100;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
         appBar: AppBar(
-          title: Text('Add New Task',style: widget.textStyleTitle,),
+          title: Text(
+            'Add New Task',
+            style: widget.textStyleTitle,
+          ),
           centerTitle: true,
           elevation: 5,
           backgroundColor: Color(0XFF4286f5),
@@ -195,6 +208,41 @@ class _AddTaskState extends State<AddTask> {
               top: 12,
             ),
             child: ListView(children: [
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Class : ',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  DropdownButton<String>(
+                    value: selectedUser,
+                    hint: Text(
+                      'Select Class',
+                      style: widget.textStyleDes,
+                    ),
+                    items: items.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String value) {
+                     
+                      selectClass(value);
+                    
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 child: _buildMultilineTextField('Subject', 1),
               ),
@@ -210,17 +258,26 @@ class _AddTaskState extends State<AddTask> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('Degree:        ${_value.toInt()}',
-                      style: TextStyle(color: Color(0XFF4a4a4a))),
+                  Text('Degree: ', style: TextStyle(color: Color(0XFF4a4a4a))),
                   SizedBox(
                     width: 10,
                   ),
-                  Slider(
-                    value: _value,
-                    onChanged: _setValue,
-                    min: minValue,
-                    max: maxValue,
-                  ),
+                  Container(
+                    height: 35,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        border:
+                            Border.all(width: 0.3, color: Colors.grey[900])),
+                    // color: Colors.teal,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        hintText: '0-100',
+                        // hintStyle: TextStyle()
+                      ),
+                      maxLengthEnforced: false,
+                      textAlign: TextAlign.center,
+                    ),
+                  )
                 ],
               ),
               SizedBox(
@@ -249,14 +306,20 @@ class _AddTaskState extends State<AddTask> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey[300]),
                           borderRadius: BorderRadius.circular(5)),
-                      child: Center(child: Text('Date',style: 
-                      widget.textStyleDes,)),
+                      child: Center(
+                          child: Text(
+                        'Date',
+                        style: widget.textStyleDes,
+                      )),
                     ),
                   ),
                   SizedBox(
                     width: 20,
                   ),
-                  Text(_date,style: widget.textStyleDes,),
+                  Text(
+                    _date,
+                    style: widget.textStyleDes,
+                  ),
                 ],
               ),
               SizedBox(
@@ -267,7 +330,7 @@ class _AddTaskState extends State<AddTask> {
                 children: [
                   InkWell(
                     onTap: () {
-                      slect(context);
+                      select(context);
                     },
                     child: Container(
                       width: 45,
@@ -275,21 +338,31 @@ class _AddTaskState extends State<AddTask> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey[300]),
                           borderRadius: BorderRadius.circular(5)),
-                      child: Center(child: Text('Time',style: widget.textStyleDes,)),
+                      child: Center(
+                          child: Text(
+                        'Time',
+                        style: widget.textStyleDes,
+                      )),
                     ),
                   ),
                   SizedBox(
                     width: 20,
                   ),
-                  Text(m
-                      ? _timeOfDay.hour.toString() +
-                          ' : ' +
-                          _timeOfDay.minute.toString()
-                      : _time + ' ',style: widget.textStyleDes,),
+                  Text(
+                    m
+                        ? _timeOfDay.hour.toString() +
+                            ' : ' +
+                            _timeOfDay.minute.toString()
+                        : _time + ' ',
+                    style: widget.textStyleDes,
+                  ),
                   SizedBox(
                     width: 5,
                   ),
-                  Text(m ? s1 : s2,style: widget.textStyleDes,),
+                  Text(
+                    m ? s1 : s2,
+                    style: widget.textStyleDes,
+                  ),
                 ],
               ),
               SizedBox(
@@ -306,8 +379,13 @@ class _AddTaskState extends State<AddTask> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
-                      onTap: () {},
-                      child: Text('Cancel',style: widget.textStyleDes,),
+                      onTap: () {
+                         Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Cancel',
+                        style: widget.textStyleDes,
+                      ),
                     ),
                     SizedBox(
                       width: 15,
@@ -317,23 +395,24 @@ class _AddTaskState extends State<AddTask> {
                       child: InkWell(
                         onTap: () {},
                         child: Container(
-                          width: 45,
+                          width: 55,
                           height: 40,
                           decoration: BoxDecoration(
                               color: Colors.grey[300],
                               borderRadius: BorderRadius.circular(5)),
-                          child: Center(child: Text('Post',style: widget.textStyleDes,)),
+                          child: Center(
+                              child: Text(
+                            'Post',
+                            style: widget.textStyleDes,
+                          )),
                         ),
                       ),
                     ),
                   ],
                 ),
-              )
-              ),
+              )),
             ]),
           ),
-        )
-     
-        );
+        ));
   }
 }
