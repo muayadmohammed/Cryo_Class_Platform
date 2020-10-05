@@ -45,11 +45,17 @@ class _HomeTasksState extends State<HomeTasks>
                 size: 30,
               ),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => AddTask(
-                        textStyleTitle: widget.textStyleTitle,
-                        textStyleDes: widget.textStyleDes,
-                        )));
+                Navigator.push(
+                    context,
+                    PageRoute(AddTask(
+                      textStyleTitle: widget.textStyleTitle,
+                      textStyleDes: widget.textStyleDes,
+                    )));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (BuildContext context) => AddTask(
+                //         textStyleTitle: widget.textStyleTitle,
+                //         textStyleDes: widget.textStyleDes,
+                //         )));
               }),
         ],
         centerTitle: true,
@@ -89,7 +95,10 @@ class _HomeTasksState extends State<HomeTasks>
             itemCount: chats.length,
             itemBuilder: (BuildContext context, int index) {
               return //AddTask();
-                  Task(textStyleTitle: widget.textStyleTitle,textStyleDes: widget.textStyleDes,);
+                  Task(
+                textStyleTitle: widget.textStyleTitle,
+                textStyleDes: widget.textStyleDes,
+              );
             },
           ),
           ListView.separated(
@@ -119,4 +128,36 @@ class _HomeTasksState extends State<HomeTasks>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+class PageRoute extends PageRouteBuilder {
+  final Widget widget;
+
+  PageRoute(this.widget)
+      : super(
+          transitionDuration: Duration(seconds: 1),
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+            Widget child,
+          ) {
+            animation = CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOutBack,
+            );
+            return ScaleTransition(
+              alignment: Alignment.center,
+              scale: animation,
+              child: child,
+            );
+          },
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+          ) {
+            return widget;
+          },
+        );
 }

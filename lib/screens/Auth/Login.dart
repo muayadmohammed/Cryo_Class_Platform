@@ -79,9 +79,7 @@ class _LoginState extends State<Login> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => MainScreen(),
-                          ),
+                          n(MainScreen())
                         );
                       },
                       padding: EdgeInsets.all(20),
@@ -102,4 +100,35 @@ class _LoginState extends State<Login> {
     );
   }
   // }
+}
+class n extends PageRouteBuilder {
+  final Widget widget;
+
+  n(this.widget)
+      : super(
+          transitionDuration: Duration(seconds: 1),
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+            Widget child,
+          ) {
+            animation = CurvedAnimation(
+              parent: animation,
+              curve: Curves.bounceInOut,
+            );
+            return ScaleTransition(
+              alignment: Alignment.center,
+              scale: animation,
+              child: child,
+            );
+          },
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+          ) {
+            return widget;
+          },
+        );
 }

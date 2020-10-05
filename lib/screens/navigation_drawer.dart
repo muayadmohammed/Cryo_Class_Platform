@@ -57,13 +57,17 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           _Sizebox,
           InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => Contact(
-                    textStyleTitle: textStyleTitle,
-                  ),
-                ),
-              );
+             Navigator.push(context, PageRoute(Contact(
+                      textStyleTitle: textStyleTitle,
+                    ),));
+           
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (BuildContext context) => Contact(
+              //       textStyleTitle: textStyleTitle,
+              //     ),
+              //   ),
+              // );
             },
             child: padding(
               Text(
@@ -82,14 +86,19 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           _Sizebox,
           InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => FeedBack(
+                 Navigator.push(context, PageRoute(FeedBack(
                       textStyleTitle: textStyleTitle,
                       textStyleDes: textStyleDes,
-                    ),
-                  ),
-                );
+                    ),));
+               
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (BuildContext context) => FeedBack(
+                //       textStyleTitle: textStyleTitle,
+                //       textStyleDes: textStyleDes,
+                //     ),
+                //   ),
+                // );
               },
               child: padding(
                 Text(
@@ -107,14 +116,19 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           _Sizebox,
           InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => About(
+              Navigator.push(context, PageRoute(About(
                       textStyleTitle: textStyleTitle,
                       textStyleDes: textStyleDes,
-                    ),
-                  ),
-                );
+                    ),));
+                    
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (BuildContext context) => About(
+                //       textStyleTitle: textStyleTitle,
+                //       textStyleDes: textStyleDes,
+                //     ),
+                //   ),
+                // );
               },
               child: padding(
                 Text(
@@ -133,4 +147,36 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       ),
     );
   }
+}
+
+class PageRoute extends PageRouteBuilder {
+  final Widget widget;
+
+  PageRoute(this.widget)
+      : super(
+          transitionDuration: Duration(seconds: 1),
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+            Widget child,
+          ) {
+            animation = CurvedAnimation(
+              parent: animation,
+              curve: Curves.decelerate,
+            );
+            return ScaleTransition(
+              alignment: Alignment.center,
+              scale: animation,
+              child: child,
+            );
+          },
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+          ) {
+            return widget;
+          },
+        );
 }

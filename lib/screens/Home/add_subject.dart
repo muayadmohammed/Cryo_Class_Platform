@@ -18,7 +18,7 @@ class _AddSubjectState extends State<AddSubject> {
         elevation: 5,
         centerTitle: true,
       ),
-      backgroundColor: Colors.white.withOpacity(0.8),
+      // backgroundColor: Colors.white.withOpacity(0.8),
       body: ListView(
         children: [
           Padding(
@@ -77,7 +77,7 @@ class _AddSubjectState extends State<AddSubject> {
                     ),
                     Divider(),
                     Container(
-                      height: 40,
+                      height: 60,
                       width: size.width - 10,
                       // color: Colors.orange,
                       child: Padding(

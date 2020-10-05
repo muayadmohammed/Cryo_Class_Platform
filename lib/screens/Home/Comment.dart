@@ -151,24 +151,53 @@ class _CommentState extends State<Comment> {
                     width: size.width,
                     height: 55,
                     decoration: BoxDecoration(
-                        color: Color(0XFF667EEA),
-                        borderRadius: BorderRadius.circular(20)),
+                      color: Color(0XFF87CEFA).withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: Center(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.only(
+                          left: 8,
+                          right: 0,
+                        ),
                         child: TextField(
+                          textAlign: TextAlign.right,
+                          cursorColor: Colors.red,
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                           decoration: InputDecoration(
+                            prefixStyle: TextStyle(
+                              color: Colors.blue,
+                            ),
+                            labelStyle: TextStyle(
+                              color: Colors.yellow,
+                            ),
+                            suffixStyle: TextStyle(
+                              color: Colors.teal,
+                            ),
+                            counterStyle: TextStyle(
+                              color: Colors.purple,
+                            ),
+                            helperStyle: TextStyle(
+                              color: Colors.cyanAccent,
+                            ),
+                            errorStyle: TextStyle(
+                              color: Colors.deepPurple,
+                            ),
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
                             hintText: 'Comment',
-                            hintStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                            ),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 Icons.send,
-                                color: Color(0XFF07094D),
+                                color: Color(0XFF00CED1),
                               ),
                               onPressed: () {},
                             ),

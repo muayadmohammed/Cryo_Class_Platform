@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -144,8 +143,6 @@ class _AddTaskState extends State<AddTask> {
     }
   }
 
-  final _controller = TextEditingController();
-
   Widget _buildMultilineTextField(String label, int line) {
     return TextFormField(
       decoration: InputDecoration(
@@ -178,36 +175,37 @@ class _AddTaskState extends State<AddTask> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Add New Task',
-            style: widget.textStyleTitle,
-          ),
-          centerTitle: true,
-          elevation: 5,
-          backgroundColor: Color(0XFF4286f5),
-          actions: [
-            IconButton(
-                icon: Icon(
-                  Icons.attach_file,
-                  color: Colors.white,
-                ),
-                onPressed: () {})
-          ],
+      appBar: AppBar(
+        title: Text(
+          'Add New Task',
+          style: widget.textStyleTitle,
         ),
-        backgroundColor: Color(0XFFeeeeee),
-        body: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 8.0,
-              right: 8,
-              bottom: 8,
-              top: 12,
+        centerTitle: true,
+        elevation: 5,
+        backgroundColor: Color(0XFF4286f5),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.attach_file,
+              color: Colors.white,
             ),
-            child: ListView(children: [
+            onPressed: () {},
+          )
+        ],
+      ),
+      backgroundColor: Color(0XFFeeeeee),
+      body: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 8.0,
+            right: 8,
+            bottom: 8,
+            top: 12,
+          ),
+          child: ListView(
+            children: [
               SizedBox(
                 height: 10,
               ),
@@ -215,7 +213,10 @@ class _AddTaskState extends State<AddTask> {
                 children: [
                   Text(
                     'Class : ',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   SizedBox(
                     width: 15,
@@ -226,16 +227,16 @@ class _AddTaskState extends State<AddTask> {
                       'Select Class',
                       style: widget.textStyleDes,
                     ),
-                    items: items.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                    items: items.map<DropdownMenuItem<String>>(
+                      (String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      },
+                    ).toList(),
                     onChanged: (String value) {
-                     
                       selectClass(value);
-                    
                     },
                   ),
                 ],
@@ -258,7 +259,12 @@ class _AddTaskState extends State<AddTask> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('Degree: ', style: TextStyle(color: Color(0XFF4a4a4a))),
+                  Text(
+                    'Degree : ',
+                    style: TextStyle(
+                      color: Color(0XFF4a4a4a),
+                    ),
+                  ),
                   SizedBox(
                     width: 10,
                   ),
@@ -293,24 +299,32 @@ class _AddTaskState extends State<AddTask> {
                         initialDate: DateTime.now(),
                         firstDate: DateTime(2020),
                         lastDate: DateTime(2100),
-                      ).then((value) => {
-                            setState(() {
+                      ).then(
+                        (value) => {
+                          setState(
+                            () {
                               DateFormat df = DateFormat.yMd();
                               this._date = df.format(value);
-                            })
-                          });
+                            },
+                          ),
+                        },
+                      );
                     },
                     child: Container(
                       width: 45,
                       height: 40,
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[300]),
-                          borderRadius: BorderRadius.circular(5)),
+                        border: Border.all(
+                          color: Colors.grey[300],
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                       child: Center(
-                          child: Text(
-                        'Date',
-                        style: widget.textStyleDes,
-                      )),
+                        child: Text(
+                          'Date',
+                          style: widget.textStyleDes,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -370,49 +384,56 @@ class _AddTaskState extends State<AddTask> {
               ),
               Divider(),
               Container(
-                  child: Padding(
-                padding: const EdgeInsets.only(
-                  right: 6,
-                  bottom: 3,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                         Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Cancel',
-                        style: widget.textStyleDes,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 2),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 55,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Center(
-                              child: Text(
-                            'Post',
-                            style: widget.textStyleDes,
-                          )),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 6,
+                    bottom: 3,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Cancel',
+                          style: widget.textStyleDes,
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 2),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 55,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Post ',
+                                style: widget.textStyleDes,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )),
-            ]),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

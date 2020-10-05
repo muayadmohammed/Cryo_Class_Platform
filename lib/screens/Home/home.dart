@@ -1,23 +1,26 @@
+import 'package:finalApp/components/route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../navigation_drawer.dart';
 import 'Comment.dart';
 import 'add_subject.dart';
+import 'create_class.dart';
 
 class Home extends StatefulWidget {
   TextStyle textStyleTitle, textStyleDes, textStyleSearch;
-  String name,desc,link;
+  String name, desc, link;
   bool flink;
-  Home(
-      {@optionalTypeArgs this.textStyleTitle,
-      @optionalTypeArgs this.textStyleDes,
-      @optionalTypeArgs this.textStyleSearch,
-      @optionalTypeArgs this.name,
-      @optionalTypeArgs this.desc,
-      @optionalTypeArgs this.link,
-      @optionalTypeArgs this.flink,
-      });
+  Home({
+    @optionalTypeArgs this.textStyleTitle,
+    @optionalTypeArgs this.textStyleDes,
+    @optionalTypeArgs this.textStyleSearch,
+    @optionalTypeArgs this.name,
+    @optionalTypeArgs this.desc,
+    @optionalTypeArgs this.link,
+    @optionalTypeArgs this.flink,
+  });
   @override
   _HomeState createState() => _HomeState();
 }
@@ -43,6 +46,15 @@ class _HomeState extends State<Home> {
     }
   }
 
+  String selectedUser;
+  final List<String> items = <String>['Create Class', 'Add Subject'];
+
+  Future<Null> selectClass(String value) async {
+    setState(() {
+      selectedUser = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,37 +65,22 @@ class _HomeState extends State<Home> {
         ),
         centerTitle: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 2,bottom: 5,top: 5 ),
-            child: Container(
-          
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(40),
-                shape: BoxShape.rectangle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey[200],
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: IconButton(
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.lightBlue,
-                    size: 30,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => AddSubject(
-                            // textStyleTitle: widget.textStyleTitle,
-                            // textStyleDes: widget.textStyleDes,
-                            )));
-                  }),
-            ),
+          PopupMenuButton<String>(
+            onSelected: (selected) {
+              if (selected == 'Add Subject') {
+                Navigator.push(context, SlideRightRoute(widget: AddSubject()));
+              } else {
+                Navigator.push(context, SlideRightRoute(widget: CreateClass()));
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return items.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
           )
         ],
         elevation: 5,
@@ -126,7 +123,7 @@ class _HomeState extends State<Home> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(5)),
             child: Padding(
               padding: const EdgeInsets.only(right: 5, left: 20),
               child: Column(
@@ -183,11 +180,15 @@ class _HomeState extends State<Home> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => Comment(
-                                      textStyleTitle: widget.textStyleTitle,
-                                      textStyleDes: widget.textStyleDes,
-                                    )));
+                            Navigator.push(
+                              context,
+                              SlideRightRoute(
+                                widget: Comment(
+                                  textStyleTitle: widget.textStyleTitle,
+                                  textStyleDes: widget.textStyleDes,
+                                ),
+                              ),
+                            );
                           },
                           child: Row(
                             children: [

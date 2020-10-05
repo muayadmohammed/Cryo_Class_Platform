@@ -49,11 +49,15 @@ class _MisssingState extends State<Misssing> {
                   onTap: () {
                     print(size.height);
                     print(size.width);
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => Evaluation(
+                    Navigator.push(context,PageRoute( Evaluation(
                               textStyleTitle: widget.textStyleTitle,
                               textStyleDes: widget.textStyleDes,
                             )));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (BuildContext context) => Evaluation(
+                    //           textStyleTitle: widget.textStyleTitle,
+                    //           textStyleDes: widget.textStyleDes,
+                    //         )));
                   },
                 ),
                 Divider(
@@ -70,4 +74,36 @@ class _MisssingState extends State<Misssing> {
       ),
     );
   }
+}
+
+class PageRoute extends PageRouteBuilder {
+  final Widget widget;
+
+  PageRoute(this.widget)
+      : super(
+          transitionDuration: Duration(seconds: 1),
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+            Widget child,
+          ) {
+            animation = CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInQuad,
+            );
+            return ScaleTransition(
+              alignment: Alignment.center,
+              scale: animation,
+              child: child,
+            );
+          },
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secAnimation,
+          ) {
+            return widget;
+          },
+        );
 }

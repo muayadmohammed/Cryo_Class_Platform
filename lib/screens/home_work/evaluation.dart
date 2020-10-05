@@ -37,183 +37,189 @@ class _EvaluationState extends State<Evaluation> {
       body: SafeArea(
         child: Container(
           color: Color(0XFFECEFF0),
-          child: Stack(
-            fit: StackFit.loose,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Flexible(
-                    fit: FlexFit.tight,
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: ListView(
-                            children: [
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Name ', style: widget.textStyleTitle,
-                                // style: TextStyle(
-                                //   fontSize: 20,
-                                //   fontWeight: FontWeight.bold,
-                                // ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                'Subject  ', style: widget.textStyleDes,
-                                // style: TextStyle(
-                                //   fontSize: 18,
-                                //   fontWeight: FontWeight.w500,
-                                // ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                  height: 94,
-                                  width: size.width,
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                  ),
-                                  child: Text(
-                                    'هنا تعرض الملفات الي رفعها الطالب',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
-                                    textAlign: TextAlign.center,
-                                  )),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Degree ',
-                                    style: TextStyle(
-                                      color: Color(0XFF4a4a4a),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  // Slider(
-                                  //   value: _value,
-                                  //   onChanged: _setValue,
-                                  //   min: minValue,
-                                  //   max: maxValue,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Stack(
+              fit: StackFit.loose,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: ListView(
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  'Name ', style: widget.textStyleTitle,
+                                  // style: TextStyle(
+                                  //   fontSize: 20,
+                                  //   fontWeight: FontWeight.bold,
                                   // ),
-                                  Container(
-                                    height: 35,
-                                    width: 60,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text(
+                                  'Subject  ', style: widget.textStyleDes,
+                                  // style: TextStyle(
+                                  //   fontSize: 18,
+                                  //   fontWeight: FontWeight.w500,
+                                  // ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 7),
+                                    height: 94,
+                                    width: size.width,
                                     decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 0.3,
-                                            color: Colors.grey[900])),
-                                    // color: Colors.teal,
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                          hintText: '0-100',
-                                          // hintStyle: TextStyle()
-                                          ),
-                                      maxLengthEnforced: false,
-                                      textAlign: TextAlign.center,
+                                      color: Colors.red,
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        )),
-                  ),
-                ],
-              ),
-              Positioned(
-                bottom: 3,
-                right: 10,
-                left: 10,
-                child: Container(
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: Colors.white70, //(0XFFC0C0C0),
-                      borderRadius: BorderRadius.circular(3),
-                      boxShadow: [
-                        new BoxShadow(
-                          color: Colors.black38,
-                          blurRadius: 10.0,
-                        ),
-                      ],
+                                    child: Text(
+                                      'هنا تعرض الملفات الي رفعها الطالب اللون والحجم يتغير بناء على ملفات الطالب ',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                      textAlign: TextAlign.center,
+                                    )),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Degree ',
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        color: Color(0XFF4a4a4a),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    // Slider(
+                                    //   value: _value,
+                                    //   onChanged: _setValue,
+                                    //   min: minValue,
+                                    //   max: maxValue,
+                                    // ),
+                                    Container(
+                                      height: 35,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 0.3,
+                                              color: Colors.grey[900])),
+                                      // color: Colors.teal,
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                            hintText: '0-100',
+                                            // hintStyle: TextStyle()
+                                            ),
+                                        maxLengthEnforced: false,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => HomeTasks(
-                                      textStyleTitle: widget.textStyleTitle,
-                                      textStyleDes: widget.textStyleDes,
-                                    )));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 0.1, color: Colors.black)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                'Cancel',
-                                // style: TextStyle(
-                                //   fontSize: 14,
-                                // )
-                                style: widget.textStyleDes,
+                  ],
+                ),
+                Positioned(
+                  bottom: 3,
+                  right: 10,
+                  left: 10,
+                  child: Container(
+                      height: 55,
+                      decoration: BoxDecoration(
+                        color: Colors.white70, //(0XFFC0C0C0),
+                        borderRadius: BorderRadius.circular(3),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black12.withOpacity(0.2),
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => HomeTasks(
+                                        textStyleTitle: widget.textStyleTitle,
+                                        textStyleDes: widget.textStyleDes,
+                                      )));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 0.1, color: Colors.black)
+                                      ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  'Cancel',
+                                  // style: TextStyle(
+                                  //   fontSize: 14,
+                                  // )
+                                  style: widget.textStyleDes,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 45,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[350],
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                  child: Row(
-                                children: [
-                                  Text(
-                                    'Send',
-                                    // style: TextStyle(
-                                    //     fontSize: 18, color: Colors.blue),
-                                    style: widget.textStyleDes,
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Icon(Icons.send,
-                                      size: 18, color: Colors.blue),
-                                ],
-                              )),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              height: 45,
+                              decoration: BoxDecoration(
+                                color: Colors.grey[350],
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                    child: Row(
+                                  children: [
+                                    Text(
+                                      'Send',
+                                      // style: TextStyle(
+                                      //     fontSize: 18, color: Colors.blue),
+                                      style: widget.textStyleDes,
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Icon(Icons.send,
+                                        size: 18, color: Colors.blue),
+                                  ],
+                                )),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )),
-              )
-            ],
+                        ],
+                      )),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -30,7 +30,7 @@ class _AboutState extends State<About> {
             // style: _title,blac
             style: widget.textStyleTitle,
           ),
-          centerTitle: true,
+          centerTitle: true,elevation: 5,
         ),
         drawer: NavigationDrawer(),
         body: Container(

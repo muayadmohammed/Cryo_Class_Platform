@@ -1,13 +1,16 @@
 
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
 
 import 'navigation_drawer.dart';
+
 class Notifications extends StatefulWidget {
-    TextStyle textStyleTitle, textStyleDes;
-  Notifications(
-      {@required this.textStyleTitle,
-      @required this.textStyleDes,});
+  TextStyle textStyleTitle, textStyleDes;
+  Notifications({
+    @required this.textStyleTitle,
+    @required this.textStyleDes,
+  });
   @override
   _NotificationsState createState() => _NotificationsState();
 }
@@ -18,10 +21,10 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Notifications",style: widget.textStyleTitle,
+          "Notifications",
+          style: widget.textStyleTitle,
         ),
         centerTitle: true,
-       
       ),
       drawer: NavigationDrawer(),
       body: ListView.separated(
@@ -66,24 +69,31 @@ class _NotificationsState extends State<Notifications> {
                       color: Color(0XFF5d6165),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Center(
-                        child: notif['icon']),
+                    child: Center(child: notif['icon']),
                   ),
                 ],
               ),
-              // leading: CircleAvatar(
-              //   backgroundImage: AssetImage(
-              //     notif['dp'],
-              //   ),
-              //   radius: 25,
-              // ),
               contentPadding: EdgeInsets.all(0),
               title: Text(notif['notif'], style: widget.textStyleDes),
-              trailing: Text(
-                notif['time'],
-                style: widget.textStyleDes
-              ),
-              onTap: () {},
+              trailing: Text(notif['time'], style: widget.textStyleDes),
+              onTap: () {
+  
+                showDialog(
+                    context: context,
+                    builder: (_) => NetworkGiffyDialog(
+                          image: Image.asset('assets/cm0.jpeg',fit: BoxFit.cover,),
+                          title: Text('Granny Eating Chocolate',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 22.0, fontWeight: FontWeight.w600)),
+                          description: Text(
+                            'This is a granny eating chocolate dialog box.',
+                            textAlign: TextAlign.center,
+                          ),
+                          // entryAnimation: EntryAnimation.BOTTOM_TOP,
+                          onOkButtonPressed: () {},
+                        ));
+              },
             ),
           );
         },
