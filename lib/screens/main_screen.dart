@@ -1,3 +1,5 @@
+import 'package:google_fonts_arabic/fonts.dart';
+
 import 'home_work/home_tasks.dart';
 import '../components/icon_badge.dart';
 import 'profile.dart';
@@ -15,26 +17,45 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   PageController _pageController;
   int _page = 2;
-  TextStyle textStyleTitle = TextStyle(
+  TextStyle textStyleTitleEn = TextStyle(
     color: Colors.black,
     fontSize: 17,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
     fontFamily: 'Montserrat',
   );
-  TextStyle textStyleDes = TextStyle(
+  TextStyle textStyleSearchEn = TextStyle(
+    color: Colors.grey[600],
+    fontSize: 16,
+    fontWeight: FontWeight.w300,
+    fontFamily: 'Montserrat',
+  );
+  TextStyle textStyleDesEn = TextStyle(
     color: Colors.grey[800],
     fontSize: 14,
     fontWeight: FontWeight.w400,
     fontFamily: 'Montserrat',
   );
-  TextStyle textStyleSearch = TextStyle(
-    color: Colors.grey[600],
-    fontSize: 16,
-    fontWeight: FontWeight.w300,
-    // fontFamily: 'bein1',
-    fontFamily: 'Montserrat',
-    // fontStyle: FontStyle.italic,
-  );
+     TextStyle textStyleTitleAr = TextStyle(
+      fontSize: 17,
+      fontWeight: FontWeight.w500,
+      color: Colors.black,
+      fontFamily: ArabicFonts.Cairo,
+      package: 'google_fonts_arabic',
+    );
+    TextStyle textStyleSearchAr = TextStyle(
+      fontFamily: ArabicFonts.Cairo,
+      package: 'google_fonts_arabic',
+      fontWeight: FontWeight.w300,
+      color: Colors.grey[600],
+      fontSize: 16,
+    );
+    TextStyle textStyleDesAr = TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Colors.grey[800],
+      fontFamily: ArabicFonts.Changa,
+      package: 'google_fonts_arabic',
+    );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,22 +64,27 @@ class _MainScreenState extends State<MainScreen> {
         controller: _pageController,
         onPageChanged: onPageChanged,
         children: <Widget>[
-          Chats( textStyleTitle: textStyleTitle,
-            textStyleDes: textStyleDes,
-            textStyleSearch: textStyleSearch,),
-          HomeTasks(
-            textStyleTitle: textStyleTitle,
-            textStyleDes: textStyleDes,
-            ),
-          Home(
-            textStyleTitle: textStyleTitle,
-            textStyleDes: textStyleDes,
-            textStyleSearch: textStyleSearch,
+          Chats(
+            textStyleTitle: textStyleTitleAr,
+            textStyleDes: textStyleDesAr,
+            textStyleSearch: textStyleSearchAr,
           ),
-          Notifications( textStyleTitle: textStyleTitle,
-            textStyleDes: textStyleDes,
-           ),
-          Profile( textStyleDes: textStyleDes,),
+          HomeTasks(
+            textStyleTitle: textStyleTitleAr,
+            textStyleDes: textStyleDesAr,
+          ),
+          Home(
+            textStyleTitle: textStyleTitleAr,
+            textStyleDes: textStyleDesAr,
+            textStyleSearch: textStyleSearchAr,
+          ),
+          Notifications(
+            textStyleTitle: textStyleTitleAr,
+            textStyleDes: textStyleDesAr,
+          ),
+          Profile(
+            textStyleDes: textStyleDesAr,
+          ),
         ],
       ),
       bottomNavigationBar: Theme(

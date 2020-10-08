@@ -1,19 +1,20 @@
+import 'package:finalApp/components/route.dart';
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 
 import 'evaluation.dart';
 
-class Misssing extends StatefulWidget {
+class Done extends StatefulWidget {
   TextStyle textStyleTitle, textStyleDes;
-  Misssing({
+  Done({
     @required this.textStyleTitle,
     @required this.textStyleDes,
   });
   @override
-  _MisssingState createState() => _MisssingState();
+  _DoneState createState() => _DoneState();
 }
 
-class _MisssingState extends State<Misssing> {
+class _DoneState extends State<Done> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,25 +40,27 @@ class _MisssingState extends State<Misssing> {
                   ),
                   contentPadding: EdgeInsets.all(0),
                   title: Container(
-                      width: size.width / 3.5,
-                      child: Text(tasks['name'], style: widget.textStyleDes)),
+                    width: size.width / 3.5,
+                    child: Text(
+                      tasks['name'],
+                      style: widget.textStyleDes,
+                    ),
+                  ),
                   trailing: Container(
                       width: size.width / 3.5,
                       child: Text(tasks['subj'],
                           textAlign: TextAlign.center,
                           style: widget.textStyleDes)),
                   onTap: () {
-                    print(size.height);
-                    print(size.width);
-                    Navigator.push(context,PageRoute( Evaluation(
-                              textStyleTitle: widget.textStyleTitle,
-                              textStyleDes: widget.textStyleDes,
-                            )));
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (BuildContext context) => Evaluation(
-                    //           textStyleTitle: widget.textStyleTitle,
-                    //           textStyleDes: widget.textStyleDes,
-                    //         )));
+                    Navigator.push(
+                      context,
+                      SlideRightRoute(
+                        widget: Evaluation(
+                          textStyleTitle: widget.textStyleTitle,
+                          textStyleDes: widget.textStyleDes,
+                        ),
+                      ),
+                    );
                   },
                 ),
                 Divider(

@@ -1,4 +1,5 @@
 import 'package:finalApp/util/data.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../chat/chat_item.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _ChatsState extends State<Chats>
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration.collapsed(
-            hintText: 'Search',
+            hintText:  translator.translate('search'),
             hintStyle: widget.textStyleSearch
           ),
         ),
@@ -45,10 +46,10 @@ class _ChatsState extends State<Chats>
           isScrollable: false,
           tabs: <Widget>[
             Tab(
-              text: "Message",
+              text:  translator.translate("message"),
             ),
             Tab(
-              text: "Active",
+              text:  translator.translate("active"),
             ),
           ],
         ),
@@ -98,14 +99,14 @@ class _ChatsState extends State<Chats>
             },
             itemCount: active.length,
             itemBuilder: (BuildContext context, int index) {
-              Map chat = active[index];
+              Map activee = active[index];
               return ChatItem(
-                dp: chat['dp'],
-                name: chat['name'],
-                isOnline: chat['isOnline'],
-                counter: chat['counter'],
-                msg: chat['msg'],
-                time: chat['time'],
+                dp: activee['dp'],
+                name: activee['name'],
+                isOnline: activee['isOnline'],
+                counter: activee['counter'],
+                msg: activee['msg'],
+                time: activee['time'],
                 textStyleTitle: widget.textStyleTitle,
             textStyleDes: widget.textStyleDes,
               );

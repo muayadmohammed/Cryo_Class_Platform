@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:localize_and_translate/localize_and_translate.dart';
+
 import 'main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -50,7 +52,7 @@ class _LoadingState extends State<Loading> {
               baseColor: Color(0xFF54C5E6),
               highlightColor: const Color(0xFFFF8C00),
               child: Text(
-                'Welcome to Cryo Class',
+            translator.translate('welcome'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 35.0,
@@ -61,7 +63,7 @@ class _LoadingState extends State<Loading> {
             SizedBox(
               height: 10,
             ),
-            Text("Please wait..."),
+            Text(translator.translate('please')),
             SizedBox(
               height: 20,
             ),

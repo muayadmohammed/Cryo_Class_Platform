@@ -1,3 +1,5 @@
+import 'package:localize_and_translate/localize_and_translate.dart';
+
 import '../main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,31 +46,31 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.only(left: 0),
                 child: Text(
-                  "Log in",
+                  translator.translate("login"),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 50,
                     fontWeight: FontWeight.w300,
                     // fontFamily: 'bein1',
-                        fontFamily: 'Montserrat',
+                    fontFamily: 'Montserrat',
                     // fontStyle: FontStyle.italic,
                   ),
                 ),
               ),
               SizedBox(height: 10),
               CustomInputField(
-                hint: "Email",
+                hint:  translator.translate("email"),
                 size: size,
                 prefixIcon: Icons.email,
               ),
               CustomInputField(
-                hint: "Password",
+                hint:  translator.translate("password"),
                 size: size,
                 prefixIcon: Icons.lock,
                 obscure: true,
               ),
-              SizedBox(height: size.height/8),
+              SizedBox(height: size.height / 8),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Align(
@@ -77,10 +79,7 @@ class _LoginState extends State<Login> {
                     borderRadius: BorderRadius.circular(70),
                     child: FlatButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          n(MainScreen())
-                        );
+                        Navigator.push(context, n(MainScreen()));
                       },
                       padding: EdgeInsets.all(20),
                       color: Color(0xFF0b132b),
@@ -101,6 +100,7 @@ class _LoginState extends State<Login> {
   }
   // }
 }
+
 class n extends PageRouteBuilder {
   final Widget widget;
 

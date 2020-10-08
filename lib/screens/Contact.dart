@@ -33,6 +33,14 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Contact',
+            style: widget.textStyleTitle,
+          ),
+          centerTitle: true,
+          elevation: 5,
+        ),
         body: ListView(
           children: <Widget>[
             Image.asset(

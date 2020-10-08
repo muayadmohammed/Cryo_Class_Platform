@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class CreateClass extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _CreateClassState extends State<CreateClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Class'),
+        title: Text(translator.translate('createClass')),
         centerTitle: true,
         elevation: 5,
       ),
@@ -28,7 +29,7 @@ class _CreateClassState extends State<CreateClass> {
                     width: 1.5,
                   ),
                 ),
-                labelText: 'Name',
+                labelText: translator.translate('name'),
                 labelStyle: TextStyle(
                   color: Color(0XFF1a73e9),
                 ),
@@ -51,7 +52,7 @@ class _CreateClassState extends State<CreateClass> {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Center(
                           child: Text(
-                        'Linke ',
+                        translator.translate('linke'),
                         style: TextStyle(
                             color: Colors.blue,
                             fontWeight: FontWeight.w400,
@@ -102,54 +103,54 @@ class _CreateClassState extends State<CreateClass> {
             ),
             SizedBox(
               height: 30,
-            ),   Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    right: 6,
-                    bottom: 3,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          'Cancel',
-                          // style: widget.textStyleDes,
-                          textAlign: TextAlign.center,
-                        ),
+            ),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  right: 6,left: 6,
+                  bottom: 3,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        translator.translate('cancel'),
+                        // style: widget.textStyleDes,
+                        textAlign: TextAlign.center,
                       ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 2),
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            width: 55,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Create ',
-                                // style: widget.textStyleDes,
-                                textAlign: TextAlign.center,
-                              ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          width: 55,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Center(
+                            child: Text(
+                              translator.translate('create'),
+                              // style: widget.textStyleDes,
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-          
+            ),
           ],
         ),
       ),

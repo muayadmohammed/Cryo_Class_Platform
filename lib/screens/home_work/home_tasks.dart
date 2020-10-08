@@ -1,4 +1,6 @@
+import 'package:finalApp/components/route.dart';
 import 'package:finalApp/screens/home_work/add_task.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import 'task.dart';
 import '../navigation_drawer.dart';
@@ -6,7 +8,7 @@ import '../navigation_drawer.dart';
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 
-import 'Missing.dart';
+import 'done.dart';
 
 class HomeTasks extends StatefulWidget {
   TextStyle textStyleTitle, textStyleDes;
@@ -34,29 +36,28 @@ class _HomeTasksState extends State<HomeTasks>
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Task',
+           translator.translate('task'),
           style: widget.textStyleTitle,
         ),
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.add,
-                color: Colors.lightBlue,
-                size: 30,
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    PageRoute(AddTask(
-                      textStyleTitle: widget.textStyleTitle,
-                      textStyleDes: widget.textStyleDes,
-                    )));
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (BuildContext context) => AddTask(
-                //         textStyleTitle: widget.textStyleTitle,
-                //         textStyleDes: widget.textStyleDes,
-                //         )));
-              }),
+            icon: Icon(
+              Icons.add,
+              color: Colors.lightBlue,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                SlideRightRoute(
+                  widget: AddTask(
+                    textStyleTitle: widget.textStyleTitle,
+                    textStyleDes: widget.textStyleDes,
+                  ),
+                ),
+              );
+            },
+          ),
         ],
         centerTitle: true,
         elevation: 4,
@@ -68,10 +69,10 @@ class _HomeTasksState extends State<HomeTasks>
           isScrollable: false,
           tabs: <Widget>[
             Tab(
-              text: "Tasks",
+              text:  translator.translate("tasks"),
             ),
             Tab(
-              text: "Done",
+              text:  translator.translate("done"),
             ),
           ],
         ),
@@ -81,7 +82,6 @@ class _HomeTasksState extends State<HomeTasks>
         controller: _tabController,
         children: <Widget>[
           ListView.separated(
-            padding: EdgeInsets.all(10),
             separatorBuilder: (BuildContext context, int index) {
               return Align(
                 alignment: Alignment.centerRight,
@@ -94,7 +94,7 @@ class _HomeTasksState extends State<HomeTasks>
             },
             itemCount: chats.length,
             itemBuilder: (BuildContext context, int index) {
-              return //AddTask();
+              return 
                   Task(
                 textStyleTitle: widget.textStyleTitle,
                 textStyleDes: widget.textStyleDes,
@@ -102,7 +102,6 @@ class _HomeTasksState extends State<HomeTasks>
             },
           ),
           ListView.separated(
-            padding: EdgeInsets.all(10),
             separatorBuilder: (BuildContext context, int index) {
               return Align(
                 alignment: Alignment.centerRight,
@@ -115,7 +114,7 @@ class _HomeTasksState extends State<HomeTasks>
             },
             itemCount: active.length,
             itemBuilder: (BuildContext context, int index) {
-              return Misssing(
+              return Done(
                 textStyleTitle: widget.textStyleTitle,
                 textStyleDes: widget.textStyleDes,
               );
@@ -128,36 +127,4 @@ class _HomeTasksState extends State<HomeTasks>
 
   @override
   bool get wantKeepAlive => true;
-}
-
-class PageRoute extends PageRouteBuilder {
-  final Widget widget;
-
-  PageRoute(this.widget)
-      : super(
-          transitionDuration: Duration(seconds: 1),
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secAnimation,
-            Widget child,
-          ) {
-            animation = CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeInOutBack,
-            );
-            return ScaleTransition(
-              alignment: Alignment.center,
-              scale: animation,
-              child: child,
-            );
-          },
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secAnimation,
-          ) {
-            return widget;
-          },
-        );
 }

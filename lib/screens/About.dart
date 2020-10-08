@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -6,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'navigation_drawer.dart';
 
 class About extends StatefulWidget {
-     TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitle, textStyleDes;
   About({
     @required this.textStyleTitle,
     @required this.textStyleDes,
@@ -16,8 +15,6 @@ class About extends StatefulWidget {
 }
 
 class _AboutState extends State<About> {
- 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,9 +27,9 @@ class _AboutState extends State<About> {
             // style: _title,blac
             style: widget.textStyleTitle,
           ),
-          centerTitle: true,elevation: 5,
+          centerTitle: true,
+          elevation: 5,
         ),
-        drawer: NavigationDrawer(),
         body: Container(
           color: Colors.white,
           child: Center(
@@ -55,7 +52,7 @@ class _AboutState extends State<About> {
                       child: Text(
                         '❤️😂حبشكلات العيد',
                         textAlign: TextAlign.center,
-                        style:  widget.textStyleTitle,
+                        style: widget.textStyleTitle,
                         maxLines: 7,
                         // minFontSize: 13,
                       ),

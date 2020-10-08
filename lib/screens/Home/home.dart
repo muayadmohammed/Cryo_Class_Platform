@@ -1,6 +1,8 @@
 import 'package:finalApp/components/route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts_arabic/fonts.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../navigation_drawer.dart';
@@ -47,7 +49,10 @@ class _HomeState extends State<Home> {
   }
 
   String selectedUser;
-  final List<String> items = <String>['Create Class', 'Add Subject'];
+  final List<String> items = <String>[
+    translator.translate('createClass'),
+    translator.translate('addSubject'),
+  ];
 
   Future<Null> selectClass(String value) async {
     setState(() {
@@ -55,29 +60,65 @@ class _HomeState extends State<Home> {
     });
   }
 
+  TextStyle textStyleTitleAr = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+    fontFamily: ArabicFonts.Cairo,
+    package: 'google_fonts_arabic',
+  );
+  TextStyle textStyleSearchAr = TextStyle(
+    fontFamily: ArabicFonts.Cairo,
+    package: 'google_fonts_arabic',
+    fontWeight: FontWeight.w300,
+    color: Colors.grey[600],
+    fontSize: 16,
+  );
+  TextStyle textStyleDesAr = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.grey[800],
+    fontFamily: ArabicFonts.Changa,
+    package: 'google_fonts_arabic',
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Class',
-          style: widget.textStyleTitle,
+          translator.translate('classTitle'),
+          style: textStyleTitleAr,
         ),
         centerTitle: true,
         actions: [
           PopupMenuButton<String>(
             onSelected: (selected) {
-              if (selected == 'Add Subject') {
-                Navigator.push(context, SlideRightRoute(widget: AddSubject()));
+              if (selected == 'Add Subject' || selected == 'اضافة موضوع') {
+                Navigator.push(
+                  context,
+                  SlideRightRoute(
+                    widget: AddSubject(textStyleDes: textStyleDesAr,textStyleTitle:textStyleTitleAr,),
+                  ),
+                );
               } else {
-                Navigator.push(context, SlideRightRoute(widget: CreateClass()));
+                Navigator.push(
+                  context,
+                  SlideRightRoute(
+                    widget: CreateClass(),
+                  ),
+                );
               }
             },
             itemBuilder: (BuildContext context) {
               return items.map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
-                  child: Text(choice),
+                  child: Text(
+                    choice,
+                    style: translator.currentLanguage == 'en'
+                        ? widget.textStyleDes
+                        : textStyleDesAr,
+                  ),
                 );
               }).toList();
             },
@@ -91,39 +132,59 @@ class _HomeState extends State<Home> {
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
           return Conteant(
-            "Subject Name",
-            'Description',
+            translator.translate('subjectName'),
+            translator.translate('description'),
             'https://www.google.com/',
-            false,
+            true,
           );
         },
       ),
     );
   }
 
-  Widget Conteant(String t, String Desc, String file, bool ffile) {
+  Widget Conteant(String Subject, String Desc, String file, bool ffile) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 5),
       child: Column(
         children: <Widget>[
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: translator.currentLanguage == 'en'
+                ? Alignment.centerLeft
+                : Alignment.centerRight,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 8, left: 5),
-              child: Text(t,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Montserrat',
-                  )),
+              padding: const EdgeInsets.only(
+                bottom: 8,
+                left: 5,
+                right: 5,
+              ),
+              child: Text(
+                Subject,
+                textAlign: translator.currentLanguage == 'en'
+                    ? TextAlign.left
+                    : TextAlign.right,
+                style: translator.currentLanguage == 'en'
+                    ? TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Montserrat',
+                      )
+                    : TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey[800],
+                        fontFamily: ArabicFonts.Changa,
+                        package: 'google_fonts_arabic',
+                      ),
+              ),
             ),
           ),
           Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(5)),
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(5),
+            ),
             child: Padding(
               padding: const EdgeInsets.only(right: 5, left: 20),
               child: Column(
@@ -135,6 +196,9 @@ class _HomeState extends State<Home> {
                   ),
                   Text(
                     Desc,
+                    textAlign: translator.currentLanguage == 'en'
+                        ? TextAlign.left
+                        : TextAlign.right,
                     style: widget.textStyleDes,
                   ),
                   SizedBox(
@@ -159,25 +223,43 @@ class _HomeState extends State<Home> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(right: 20, left: 0, bottom: 5),
+                        const EdgeInsets.only(right: 10, left: 10, bottom: 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              '$_counter ',
-                            ),
-                            IconButton(
-                                icon: Icon(
-                                  Icons.thumb_up,
-                                  color: like ? Colors.green : Colors.grey,
-                                ),
-                                onPressed: () {
-                                  _incrementCounter();
-                                }),
-                          ],
-                        ),
+                        translator.currentLanguage == 'en'
+                            ? Row(
+                                children: [
+                                  Text(
+                                    '$_counter ',
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.thumb_up,
+                                      color: like ? Colors.green : Colors.grey,
+                                    ),
+                                    onPressed: () {
+                                      _incrementCounter();
+                                    },
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.thumb_up,
+                                      color: like ? Colors.green : Colors.grey,
+                                    ),
+                                    onPressed: () {
+                                      _incrementCounter();
+                                    },
+                                  ),
+                                  Text(
+                                    '$_counter ',
+                                  ),
+                                ],
+                              ),
                         InkWell(
                           onTap: () {
                             Navigator.push(
@@ -196,7 +278,10 @@ class _HomeState extends State<Home> {
                                 '1',
                               ),
                               Text(
-                                ' Comment',
+                                ' ' + translator.translate('comment'),
+                                style: translator.currentLanguage == 'en'
+                                    ? widget.textStyleDes
+                                    : textStyleDesAr,
                               ),
                             ],
                           ),

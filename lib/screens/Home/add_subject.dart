@@ -1,9 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import 'home.dart';
 
 class AddSubject extends StatefulWidget {
+  TextStyle textStyleTitle, textStyleDes;
+  AddSubject({
+    @required this.textStyleTitle,
+    @required this.textStyleDes,
+  });
   @override
   _AddSubjectState createState() => _AddSubjectState();
 }
@@ -14,7 +20,10 @@ class _AddSubjectState extends State<AddSubject> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Subject'),
+        title: Text(
+          translator.translate('addSubject'),
+          style: widget.textStyleTitle,
+        ),
         elevation: 5,
         centerTitle: true,
       ),
@@ -44,13 +53,13 @@ class _AddSubjectState extends State<AddSubject> {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Subject Name...',
+                            hintText: translator.translate('subjectName'),
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            // hintStyle: widget.textStyleSearch,
+                            hintStyle: widget.textStyleDes,
                           ),
                         ),
                       ),
@@ -64,13 +73,13 @@ class _AddSubjectState extends State<AddSubject> {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Description...',
+                            hintText: translator.translate('description'),
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            // hintStyle: widget.textStyleSearch,
+                            hintStyle: widget.textStyleDes,
                           ),
                         ),
                       ),
@@ -98,7 +107,10 @@ class _AddSubjectState extends State<AddSubject> {
                                             builder: (BuildContext context) =>
                                                 Home()));
                                   },
-                                  child: Text('Cancel'),
+                                  child: Text(
+                                    translator.translate('cancel'),
+                                    style: widget.textStyleDes,
+                                  ),
                                 ),
                                 SizedBox(
                                   width: 15,
@@ -119,7 +131,11 @@ class _AddSubjectState extends State<AddSubject> {
                                           color: Colors.grey[300],
                                           borderRadius:
                                               BorderRadius.circular(5)),
-                                      child: Center(child: Text('Post')),
+                                      child: Center(
+                                          child: Text(
+                                        translator.translate('post'),
+                                        style: widget.textStyleDes,
+                                      )),
                                     ),
                                   ),
                                 ),

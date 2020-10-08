@@ -1,3 +1,4 @@
+import 'package:finalApp/components/route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'about.dart';
@@ -12,7 +13,6 @@ class NavigationDrawer extends StatefulWidget {
 class _NavigationDrawerState extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) {
-
     TextStyle textStyleTitle = TextStyle(
       color: Colors.black,
       fontSize: 17,
@@ -57,17 +57,15 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           _Sizebox,
           InkWell(
             onTap: () {
-             Navigator.push(context, PageRoute(Contact(
+            
+    Navigator.push(
+            context,
+            SlideRightRoute(
+              widget:  Contact(
                       textStyleTitle: textStyleTitle,
-                    ),));
-           
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (BuildContext context) => Contact(
-              //       textStyleTitle: textStyleTitle,
-              //     ),
-              //   ),
-              // );
+              ),
+            ),
+          );
             },
             child: padding(
               Text(
@@ -86,19 +84,16 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           _Sizebox,
           InkWell(
               onTap: () {
-                 Navigator.push(context, PageRoute(FeedBack(
-                      textStyleTitle: textStyleTitle,
-                      textStyleDes: textStyleDes,
-                    ),));
-               
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (BuildContext context) => FeedBack(
-                //       textStyleTitle: textStyleTitle,
-                //       textStyleDes: textStyleDes,
-                //     ),
-                //   ),
-                // );
+             
+                    Navigator.push(
+            context,
+            SlideRightRoute(
+              widget:FeedBack(
+                        textStyleTitle: textStyleTitle,
+                        textStyleDes: textStyleDes, 
+              ),
+            ),
+          );
               },
               child: padding(
                 Text(
@@ -116,19 +111,15 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
           _Sizebox,
           InkWell(
               onTap: () {
-              Navigator.push(context, PageRoute(About(
+                Navigator.push(
+                  context,
+                  SlideRightRoute(
+                    widget: About(
                       textStyleTitle: textStyleTitle,
                       textStyleDes: textStyleDes,
-                    ),));
-                    
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (BuildContext context) => About(
-                //       textStyleTitle: textStyleTitle,
-                //       textStyleDes: textStyleDes,
-                //     ),
-                //   ),
-                // );
+                    ),
+                  ),
+                );
               },
               child: padding(
                 Text(
@@ -147,36 +138,4 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       ),
     );
   }
-}
-
-class PageRoute extends PageRouteBuilder {
-  final Widget widget;
-
-  PageRoute(this.widget)
-      : super(
-          transitionDuration: Duration(seconds: 1),
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secAnimation,
-            Widget child,
-          ) {
-            animation = CurvedAnimation(
-              parent: animation,
-              curve: Curves.decelerate,
-            );
-            return ScaleTransition(
-              alignment: Alignment.center,
-              scale: animation,
-              child: child,
-            );
-          },
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secAnimation,
-          ) {
-            return widget;
-          },
-        );
 }

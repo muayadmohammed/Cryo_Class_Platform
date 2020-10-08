@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
-import 'Missing.dart';
 import 'home_tasks.dart';
 
 class Evaluation extends StatefulWidget {
@@ -29,14 +29,14 @@ class _EvaluationState extends State<Evaluation> {
       appBar: AppBar(
         elevation: 5,
         title: Text(
-          'Evaluation',
+          translator.translate('evaluation'),
           style: widget.textStyleTitle,
         ),
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Container(
-          color: Color(0XFFECEFF0),
+        child: Card(
+          elevation: 8,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Stack(
@@ -60,27 +60,23 @@ class _EvaluationState extends State<Evaluation> {
                                   height: 10,
                                 ),
                                 Text(
-                                  'Name ', style: widget.textStyleTitle,
-                                  // style: TextStyle(
-                                  //   fontSize: 20,
-                                  //   fontWeight: FontWeight.bold,
-                                  // ),
+                                  translator.translate('name'),
+                                  style: widget.textStyleTitle,
                                 ),
                                 SizedBox(
                                   height: 20,
                                 ),
+                                Divider(),
                                 Text(
-                                  'Subject  ', style: widget.textStyleDes,
-                                  // style: TextStyle(
-                                  //   fontSize: 18,
-                                  //   fontWeight: FontWeight.w500,
-                                  // ),
+                                  translator.translate('subject'),
+                                  style: widget.textStyleDes,
                                 ),
                                 SizedBox(
                                   height: 20,
                                 ),
+                                Divider(),
                                 Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 7),
+                                    margin: EdgeInsets.symmetric(horizontal: 7),
                                     height: 94,
                                     width: size.width,
                                     decoration: BoxDecoration(
@@ -95,11 +91,12 @@ class _EvaluationState extends State<Evaluation> {
                                 SizedBox(
                                   height: 20,
                                 ),
+                                Divider(),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Degree ',
+                                       translator.translate('degree'),
                                       style: TextStyle(
                                         fontSize: 17,
                                         color: Color(0XFF4a4a4a),
@@ -108,12 +105,6 @@ class _EvaluationState extends State<Evaluation> {
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    // Slider(
-                                    //   value: _value,
-                                    //   onChanged: _setValue,
-                                    //   min: minValue,
-                                    //   max: maxValue,
-                                    // ),
                                     Container(
                                       height: 35,
                                       width: 60,
@@ -124,15 +115,16 @@ class _EvaluationState extends State<Evaluation> {
                                       // color: Colors.teal,
                                       child: TextFormField(
                                         decoration: InputDecoration(
-                                            hintText: '0-100',
-                                            // hintStyle: TextStyle()
-                                            ),
+                                          hintText: '0-100',
+                                          // hintStyle: TextStyle()
+                                        ),
                                         maxLengthEnforced: false,
                                         textAlign: TextAlign.center,
                                       ),
                                     )
                                   ],
                                 ),
+                                Divider(),
                               ],
                             ),
                           )),
@@ -143,18 +135,10 @@ class _EvaluationState extends State<Evaluation> {
                   bottom: 3,
                   right: 10,
                   left: 10,
-                  child: Container(
-                      height: 55,
-                      decoration: BoxDecoration(
-                        color: Colors.white70, //(0XFFC0C0C0),
-                        borderRadius: BorderRadius.circular(3),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Colors.black12.withOpacity(0.2),
-                            blurRadius: 10.0,
-                          ),
-                        ],
-                      ),
+                  child: SizedBox(
+                    height: 70,
+                    child: Card(
+                      elevation: 8,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -169,12 +153,11 @@ class _EvaluationState extends State<Evaluation> {
                             child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      width: 0.1, color: Colors.black)
-                                      ),
+                                      width: 0.1, color: Colors.black)),
                               child: Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: Text(
-                                  'Cancel',
+                                   translator.translate('cancel'),
                                   // style: TextStyle(
                                   //   fontSize: 14,
                                   // )
@@ -200,7 +183,7 @@ class _EvaluationState extends State<Evaluation> {
                                     child: Row(
                                   children: [
                                     Text(
-                                      'Send',
+                                       translator.translate('send'),
                                       // style: TextStyle(
                                       //     fontSize: 18, color: Colors.blue),
                                       style: widget.textStyleDes,
@@ -216,7 +199,9 @@ class _EvaluationState extends State<Evaluation> {
                             ),
                           ),
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),

@@ -20,15 +20,12 @@ class _FeedBackState extends State<FeedBack> {
       child: Scaffold(
         backgroundColor: Color(0XFF7FC4FD),
         appBar: AppBar(
-          // iconTheme: IconThemeData(color: Colors.black),
           title: Text(
             'Feedback',
-            style: widget.textStyleTitle,//TextStyle(color: Colors.black, fontFamily: 'Montserrat',fontWeight: FontWeight.w400),
-            // style: _title,
+            style: widget.textStyleTitle,
           ),
-          centerTitle: true, elevation: 4,
+          centerTitle: true, elevation: 5,
         ),
-        drawer: NavigationDrawer(),
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

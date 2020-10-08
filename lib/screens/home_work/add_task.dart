@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class AddTask extends StatefulWidget {
   TextStyle textStyleTitle, textStyleDes;
@@ -177,20 +178,23 @@ class _AddTaskState extends State<AddTask> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Add New Task',
+        title: Text( translator.translate('addNewTask'),
           style: widget.textStyleTitle,
         ),
         centerTitle: true,
         elevation: 5,
-        backgroundColor: Color(0XFF4286f5),
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: Icon(
               Icons.attach_file,
-              color: Colors.white,
+              color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+print('Muayad Mohammed');
+
+
+            },
           )
         ],
       ),
@@ -212,7 +216,7 @@ class _AddTaskState extends State<AddTask> {
               Row(
                 children: [
                   Text(
-                    'Class : ',
+                     translator.translate('class'),
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -223,8 +227,7 @@ class _AddTaskState extends State<AddTask> {
                   ),
                   DropdownButton<String>(
                     value: selectedUser,
-                    hint: Text(
-                      'Select Class',
+                    hint: Text( translator.translate('selectClass'),
                       style: widget.textStyleDes,
                     ),
                     items: items.map<DropdownMenuItem<String>>(
@@ -245,13 +248,13 @@ class _AddTaskState extends State<AddTask> {
                 height: 20,
               ),
               Container(
-                child: _buildMultilineTextField('Subject', 1),
+                child: _buildMultilineTextField( translator.translate('subject'), 1),
               ),
               SizedBox(
                 height: 20,
               ),
               Container(
-                child: _buildMultilineTextField('Description', 3),
+                child: _buildMultilineTextField( translator.translate('description'), 3),
               ),
               SizedBox(
                 height: 20,
@@ -259,8 +262,7 @@ class _AddTaskState extends State<AddTask> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    'Degree : ',
+                  Text( translator.translate('degree'),
                     style: TextStyle(
                       color: Color(0XFF4a4a4a),
                     ),
@@ -321,7 +323,7 @@ class _AddTaskState extends State<AddTask> {
                       ),
                       child: Center(
                         child: Text(
-                          'Date',
+                          translator.translate('date'),
                           style: widget.textStyleDes,
                         ),
                       ),
@@ -354,7 +356,7 @@ class _AddTaskState extends State<AddTask> {
                           borderRadius: BorderRadius.circular(5)),
                       child: Center(
                           child: Text(
-                        'Time',
+                         translator.translate('time'),
                         style: widget.textStyleDes,
                       )),
                     ),
@@ -383,12 +385,10 @@ class _AddTaskState extends State<AddTask> {
                 height: 20,
               ),
               Divider(),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    right: 6,
-                    bottom: 3,
-                  ),
+              SizedBox(
+                height: 60,
+                child: Card(
+                  elevation: 3,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -397,7 +397,7 @@ class _AddTaskState extends State<AddTask> {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'Cancel',
+                          translator.translate('cancel'),
                           style: widget.textStyleDes,
                           textAlign: TextAlign.center,
                         ),
@@ -418,7 +418,7 @@ class _AddTaskState extends State<AddTask> {
                             ),
                             child: Center(
                               child: Text(
-                                'Post ',
+                                translator.translate('post'),
                                 style: widget.textStyleDes,
                                 textAlign: TextAlign.center,
                               ),

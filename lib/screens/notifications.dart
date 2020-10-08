@@ -2,6 +2,7 @@
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import 'navigation_drawer.dart';
 
@@ -21,7 +22,7 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Notifications",
+         translator.translate("notifications"),
           style: widget.textStyleTitle,
         ),
         centerTitle: true,

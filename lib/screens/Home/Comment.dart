@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class Comment extends StatefulWidget {
   final TextStyle textStyleTitle, textStyleDes;
@@ -17,7 +18,7 @@ class _CommentState extends State<Comment> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Comment',
+          translator.translate('comment'),
           style: widget.textStyleTitle,
         ),
         centerTitle: true,
@@ -76,7 +77,7 @@ class _CommentState extends State<Comment> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 15),
+                                                  left: 15,right: 15),
                                               child: CircleAvatar(
                                                   backgroundColor: Colors.blue,
                                                   backgroundImage: AssetImage(
@@ -94,7 +95,8 @@ class _CommentState extends State<Comment> {
                                                   Container(
                                                     width: size.width / 2.2,
                                                     child: Text(
-                                                      'Name of Student',
+                                                      translator.translate(
+                                                          'nameofStudent'),
                                                       style:
                                                           widget.textStyleDes,
                                                     ),
@@ -105,7 +107,9 @@ class _CommentState extends State<Comment> {
                                                   Container(
                                                     width: size.width / 2.2,
                                                     child: Text(
-                                                      'Description\nيكبر ويصغر حسب المحتوى',
+                                                      translator.translate(
+                                                              "Description") +
+                                                          '\nيكبر ويصغر حسب المحتوى',
                                                       style:
                                                           widget.textStyleDes,
                                                     ),
@@ -120,7 +124,7 @@ class _CommentState extends State<Comment> {
                                               // alignment: Alignment.topRight,
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
-                                                    right: 10, bottom: 0),
+                                                    right: 10, bottom: 0,left: 10),
                                                 child: Text('12:09 AM',
                                                     style: widget.textStyleDes
                                                     // TextStyle(
@@ -158,42 +162,25 @@ class _CommentState extends State<Comment> {
                       child: Padding(
                         padding: const EdgeInsets.only(
                           left: 8,
-                          right: 0,
+                          right: 8,
                         ),
                         child: TextField(
                           textAlign: TextAlign.right,
-                          cursorColor: Colors.red,
+                          cursorColor: Colors.white,
                           style: TextStyle(
                             color: Colors.black,
                           ),
                           decoration: InputDecoration(
-                            prefixStyle: TextStyle(
-                              color: Colors.blue,
-                            ),
-                            labelStyle: TextStyle(
-                              color: Colors.yellow,
-                            ),
-                            suffixStyle: TextStyle(
-                              color: Colors.teal,
-                            ),
-                            counterStyle: TextStyle(
-                              color: Colors.purple,
-                            ),
-                            helperStyle: TextStyle(
-                              color: Colors.cyanAccent,
-                            ),
-                            errorStyle: TextStyle(
-                              color: Colors.deepPurple,
-                            ),
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            hintText: 'Comment',
-                            hintStyle: TextStyle(
-                              color: Colors.black,
-                            ),
+                            hintText:  translator.translate('comment'),
+                            hintStyle: widget.textStyleDes,
+                            // TextStyle(
+                            //   color: Colors.black,
+                            // ),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 Icons.send,
