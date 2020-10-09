@@ -1,15 +1,17 @@
 import 'package:google_fonts_arabic/fonts.dart';
 
-import 'home_work/home_tasks.dart';
+import 'home_work/Teacher/home_tasks.dart';
 import '../components/icon_badge.dart';
 import 'profile.dart';
 import 'package:flutter/material.dart';
 
 import 'chat/chats.dart';
-import 'Home/home.dart';
+import 'Home/Teacher/home.dart';
 import 'notifications.dart';
 
 class MainScreen extends StatefulWidget {
+  final bool teacher;
+  MainScreen({this.teacher});
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -35,27 +37,27 @@ class _MainScreenState extends State<MainScreen> {
     fontWeight: FontWeight.w400,
     fontFamily: 'Montserrat',
   );
-     TextStyle textStyleTitleAr = TextStyle(
-      fontSize: 17,
-      fontWeight: FontWeight.w500,
-      color: Colors.black,
-      fontFamily: ArabicFonts.Cairo,
-      package: 'google_fonts_arabic',
-    );
-    TextStyle textStyleSearchAr = TextStyle(
-      fontFamily: ArabicFonts.Cairo,
-      package: 'google_fonts_arabic',
-      fontWeight: FontWeight.w300,
-      color: Colors.grey[600],
-      fontSize: 16,
-    );
-    TextStyle textStyleDesAr = TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: Colors.grey[800],
-      fontFamily: ArabicFonts.Changa,
-      package: 'google_fonts_arabic',
-    );
+  TextStyle textStyleTitleAr = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+    fontFamily: ArabicFonts.Cairo,
+    package: 'google_fonts_arabic',
+  );
+  TextStyle textStyleSearchAr = TextStyle(
+    fontFamily: ArabicFonts.Cairo,
+    package: 'google_fonts_arabic',
+    fontWeight: FontWeight.w300,
+    color: Colors.grey[600],
+    fontSize: 16,
+  );
+  TextStyle textStyleDesAr = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.grey[800],
+    fontFamily: ArabicFonts.Changa,
+    package: 'google_fonts_arabic',
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,25 +67,41 @@ class _MainScreenState extends State<MainScreen> {
         onPageChanged: onPageChanged,
         children: <Widget>[
           Chats(
-            textStyleTitle: textStyleTitleAr,
-            textStyleDes: textStyleDesAr,
-            textStyleSearch: textStyleSearchAr,
+            // teacher: teacher,
+            textStyleTitleEn: textStyleTitleEn,
+            textStyleDesEn: textStyleDesEn,
+            textStyleSearchEn: textStyleSearchEn,
+            textStyleTitleAr: textStyleTitleAr,
+            textStyleDesAr: textStyleDesAr,
+            textStyleSearchAr: textStyleSearchAr,
           ),
           HomeTasks(
-            textStyleTitle: textStyleTitleAr,
-            textStyleDes: textStyleDesAr,
+            teacher: widget.teacher,
+            textStyleTitleAr: textStyleTitleAr,
+            textStyleDesAr: textStyleDesAr,
+            textStyleTitleEn: textStyleTitleEn,
+            textStyleDesEn: textStyleDesEn,
           ),
           Home(
-            textStyleTitle: textStyleTitleAr,
-            textStyleDes: textStyleDesAr,
-            textStyleSearch: textStyleSearchAr,
+            teacher:widget.teacher,
+            textStyleTitleAr: textStyleTitleAr,
+            textStyleDesAr: textStyleDesAr,
+            textStyleSearchAr: textStyleSearchAr,
+            textStyleTitleEn: textStyleTitleEn,
+            textStyleDesEn: textStyleDesEn,
+            textStyleSearchEn: textStyleSearchEn,
           ),
           Notifications(
-            textStyleTitle: textStyleTitleAr,
-            textStyleDes: textStyleDesAr,
+            teacher:widget.teacher,
+            textStyleTitleAr: textStyleTitleAr,
+            textStyleDesAr: textStyleDesAr,
+            textStyleTitleEn: textStyleTitleEn,
+            textStyleDesEn: textStyleDesEn,
           ),
           Profile(
-            textStyleDes: textStyleDesAr,
+            teacher: widget.teacher,
+            textStyleDesEn: textStyleDesEn,
+            textStyleDesAr: textStyleDesAr,
           ),
         ],
       ),

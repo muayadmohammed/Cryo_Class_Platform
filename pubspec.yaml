@@ -40,6 +40,7 @@ dependencies:
   sliding_card: ^0.1.2
   giffy_dialog: ^1.8.0
   localize_and_translate: ^3.0.2
+  awesome_dialog: ^1.2.0
   
 
 

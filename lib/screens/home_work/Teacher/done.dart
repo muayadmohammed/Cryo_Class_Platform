@@ -1,14 +1,17 @@
 import 'package:finalApp/components/route.dart';
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import 'evaluation.dart';
 
 class Done extends StatefulWidget {
-  TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
   Done({
-    @required this.textStyleTitle,
-    @required this.textStyleDes,
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
   });
   @override
   _DoneState createState() => _DoneState();
@@ -43,21 +46,30 @@ class _DoneState extends State<Done> {
                     width: size.width / 3.5,
                     child: Text(
                       tasks['name'],
-                      style: widget.textStyleDes,
+                      style: translator.currentLanguage == 'en'
+                          ? widget.textStyleTitleEn
+                          : widget.textStyleTitleAr,
                     ),
                   ),
                   trailing: Container(
-                      width: size.width / 3.5,
-                      child: Text(tasks['subj'],
-                          textAlign: TextAlign.center,
-                          style: widget.textStyleDes)),
+                    width: size.width / 3.5,
+                    child: Text(
+                      tasks['subj'],
+                      textAlign: TextAlign.center,
+                      style: translator.currentLanguage == 'en'
+                          ? widget.textStyleTitleEn
+                          : widget.textStyleTitleAr,
+                    ),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
                       SlideRightRoute(
                         widget: Evaluation(
-                          textStyleTitle: widget.textStyleTitle,
-                          textStyleDes: widget.textStyleDes,
+                          textStyleDesAr: widget.textStyleDesAr,
+                          textStyleTitleAr: widget.textStyleTitleAr,
+                          textStyleTitleEn: widget.textStyleTitleEn,
+                          textStyleDesEn: widget.textStyleDesEn,
                         ),
                       ),
                     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts_arabic/fonts.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class CustomInputField extends StatelessWidget {
   const CustomInputField({
@@ -34,10 +36,17 @@ class CustomInputField extends StatelessWidget {
                 color: Colors.white,
               ),
               hintText: hint,
-              hintStyle: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w300,
-              ),
+              hintStyle: translator.currentLanguage == 'en'
+                  ? TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                    )
+                  : TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                      fontFamily: ArabicFonts.Cairo,
+                      package: 'google_fonts_arabic',
+                    ),
               border: InputBorder.none,
             ),
           ),

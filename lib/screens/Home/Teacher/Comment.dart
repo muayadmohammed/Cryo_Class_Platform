@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 class Comment extends StatefulWidget {
-  final TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
   Comment({
-    @required this.textStyleTitle,
-    @required this.textStyleDes,
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
   });
   @override
   _CommentState createState() => _CommentState();
@@ -19,7 +21,9 @@ class _CommentState extends State<Comment> {
       appBar: AppBar(
         title: Text(
           translator.translate('comment'),
-          style: widget.textStyleTitle,
+          style: translator.currentLanguage == 'en'
+              ? widget.textStyleTitleEn
+              : widget.textStyleTitleAr,
         ),
         centerTitle: true,
         elevation: 4,
@@ -68,7 +72,7 @@ class _CommentState extends State<Comment> {
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius:
-                                                BorderRadius.circular(30)),
+                                                BorderRadius.circular(15)),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -77,7 +81,7 @@ class _CommentState extends State<Comment> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(
-                                                  left: 15,right: 15),
+                                                  left: 15, right: 15),
                                               child: CircleAvatar(
                                                   backgroundColor: Colors.blue,
                                                   backgroundImage: AssetImage(
@@ -97,8 +101,13 @@ class _CommentState extends State<Comment> {
                                                     child: Text(
                                                       translator.translate(
                                                           'nameofStudent'),
-                                                      style:
-                                                          widget.textStyleDes,
+                                                      style: translator
+                                                                  .currentLanguage ==
+                                                              'en'
+                                                          ? widget
+                                                              .textStyleDesEn
+                                                          : widget
+                                                              .textStyleDesAr,
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -110,8 +119,13 @@ class _CommentState extends State<Comment> {
                                                       translator.translate(
                                                               "Description") +
                                                           '\nيكبر ويصغر حسب المحتوى',
-                                                      style:
-                                                          widget.textStyleDes,
+                                                      style: translator
+                                                                  .currentLanguage ==
+                                                              'en'
+                                                          ? widget
+                                                              .textStyleDesEn
+                                                          : widget
+                                                              .textStyleDesAr,
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -124,14 +138,21 @@ class _CommentState extends State<Comment> {
                                               // alignment: Alignment.topRight,
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
-                                                    right: 10, bottom: 0,left: 10),
-                                                child: Text('12:09 AM',
-                                                    style: widget.textStyleDes
-                                                    // TextStyle(
-                                                    //     color:
-                                                    //         Color(0XFF798186),
-                                                    //     fontSize: 12),
-                                                    ),
+                                                    right: 10,
+                                                    bottom: 0,
+                                                    left: 10),
+                                                child: Text(
+                                                  '12:09 AM',
+                                                  style: translator
+                                                              .currentLanguage ==
+                                                          'en'
+                                                      ? widget.textStyleDesEn
+                                                      : widget.textStyleDesAr,
+                                                  // TextStyle(
+                                                  //     color:
+                                                  //         Color(0XFF798186),
+                                                  //     fontSize: 12),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -176,8 +197,10 @@ class _CommentState extends State<Comment> {
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            hintText:  translator.translate('comment'),
-                            hintStyle: widget.textStyleDes,
+                            hintText: translator.translate('comment'),
+                            hintStyle: translator.currentLanguage == 'en'
+                                ? widget.textStyleDesEn
+                                : widget.textStyleDesAr,
                             // TextStyle(
                             //   color: Colors.black,
                             // ),

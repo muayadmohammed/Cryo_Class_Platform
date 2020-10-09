@@ -1,5 +1,6 @@
 import 'package:finalApp/components/route.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 import 'Auth/Login.dart';
@@ -7,9 +8,12 @@ import 'navigation_drawer.dart';
 import 'chat/conversation.dart';
 
 class Profile extends StatefulWidget {
-  final TextStyle textStyleDes;
+  final TextStyle textStyleDesEn, textStyleDesAr;
+  bool teacher;
   Profile({
-    @required this.textStyleDes,
+    @required this.textStyleDesEn,
+    @required this.textStyleDesAr,
+    @required this.teacher,
   });
   @override
   Profile_State createState() => Profile_State();
@@ -72,34 +76,56 @@ class Profile_State extends State<Profile> {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 10,
-                                      right: 10,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          translator.translate('stage'),
-                                          style: TextStyle(
-                                              fontSize: 17.0,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Montserrat'),
-                                          textAlign: TextAlign.left,
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                  ),
+                                  child: widget.teacher
+                                      ? null
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              translator.translate('stage'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      fontSize: 17.0,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: 'Montserrat')
+                                                  : TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.black,
+                                                      fontFamily:
+                                                          ArabicFonts.Cairo,
+                                                      package:
+                                                          'google_fonts_arabic',
+                                                    ),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                            Text(
+                                              translator.translate('fourth'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      color: Colors.grey[700],
+                                                      fontSize: 17.0,
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                      fontFamily: 'Montserrat')
+                                                  : widget.textStyleDesAr,
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ],
                                         ),
-                                        Text(
-                                          translator.translate('fourth'),
-                                          style: TextStyle(
-                                              color: Colors.grey[700],
-                                              fontSize: 17.0,
-                                              fontStyle: FontStyle.italic,
-                                              fontFamily: 'Montserrat'),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ],
-                                    )),
+                                ),
                               ),
                               SizedBox(height: 15.0),
                               Align(
@@ -111,11 +137,21 @@ class Profile_State extends State<Profile> {
                                       children: [
                                         Text(
                                           translator.translate('emailProfil'),
-                                          style: TextStyle(
-                                              fontSize: 17.0,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Montserrat'),
+                                          style: translator.currentLanguage ==
+                                                  'en'
+                                              ? TextStyle(
+                                                  fontSize: 17.0,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Montserrat')
+                                              : TextStyle(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black,
+                                                  fontFamily: ArabicFonts.Cairo,
+                                                  package:
+                                                      'google_fonts_arabic',
+                                                ),
                                           textAlign: TextAlign.left,
                                         ),
                                         Text(
@@ -130,21 +166,22 @@ class Profile_State extends State<Profile> {
                                       ],
                                     )),
                               ),
-                              SizedBox(height: size.height / 13.5),
+                              SizedBox(height: size.height / 17),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     SlideRightRoute(
                                       widget: Conversation(
-                                        textStyleDes: widget.textStyleDes,
+                                        textStyleDesEn: widget.textStyleDesEn,
+                                        textStyleDesAr: widget.textStyleDesAr,
                                       ),
                                     ),
                                   );
                                 },
                                 child: Container(
-                                    height: 40.0,
-                                    width: 100.0,
+                                   height: 45.0,
+                                  width: 115.0,
                                     child: Material(
                                       borderRadius: BorderRadius.circular(20.0),
                                       shadowColor: Colors.blueGrey,
@@ -161,19 +198,23 @@ class Profile_State extends State<Profile> {
                                             ),
                                             Text(
                                               translator.translate('Chat'),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Montserrat'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      color: Colors.white,
+                                                      fontFamily: 'Montserrat')
+                                                  : widget.textStyleDesAr,
                                             ),
                                           ],
                                         ),
                                       ),
                                     )),
                               ),
-                              SizedBox(height: 25.0),
+                              SizedBox(height: 15.0),
                               Container(
-                                  height: 40.0,
-                                  width: 100.0,
+                                  height: 45.0,
+                                  width: 115.0,
                                   child: Material(
                                     borderRadius: BorderRadius.circular(20.0),
                                     shadowColor: Colors.redAccent,
@@ -190,16 +231,25 @@ class Profile_State extends State<Profile> {
                                       },
                                       child: Center(
                                         child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Icon(Icons.logout),
+                                            Icon(
+                                              Icons.logout,
+                                              size: 18,
+                                            ),
                                             SizedBox(
-                                              width: 8,
+                                              width: 5,
                                             ),
                                             Text(
                                               translator.translate('logout'),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Montserrat'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      color: Colors.white,
+                                                      fontFamily: 'Montserrat')
+                                                  : widget.textStyleDesAr,
                                             ),
                                           ],
                                         ),
@@ -259,28 +309,51 @@ class Profile_State extends State<Profile> {
                                       left: 10,
                                       right: 10,
                                     ),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          translator.translate('stage'),
-                                          style: TextStyle(
-                                              fontSize: 17.0,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Montserrat'),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                        Text(
-                                          translator.translate('fourth'),
-                                          style: TextStyle(
-                                              color: Colors.grey[700],
-                                              fontSize: 17.0,
-                                              fontStyle: FontStyle.italic,
-                                              fontFamily: 'Montserrat'),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ],
-                                    )),
+                                    child: widget.teacher
+                                      ? null
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              translator.translate('stage'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      fontSize: 17.0,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: 'Montserrat')
+                                                  : TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.black,
+                                                      fontFamily:
+                                                          ArabicFonts.Cairo,
+                                                      package:
+                                                          'google_fonts_arabic',
+                                                    ),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                            Text(
+                                              translator.translate('fourth'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      color: Colors.grey[700],
+                                                      fontSize: 17.0,
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                      fontFamily: 'Montserrat')
+                                                  : widget.textStyleDesAr,
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ],
+                                        ),),
                               ),
                               SizedBox(height: 15.0),
                               Align(
@@ -294,11 +367,21 @@ class Profile_State extends State<Profile> {
                                       children: [
                                         Text(
                                           translator.translate('emailProfile'),
-                                          style: TextStyle(
-                                              fontSize: 17.0,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Montserrat'),
+                                          style: translator.currentLanguage ==
+                                                  'en'
+                                              ? TextStyle(
+                                                  fontSize: 17.0,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Montserrat')
+                                              : TextStyle(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black,
+                                                  fontFamily: ArabicFonts.Cairo,
+                                                  package:
+                                                      'google_fonts_arabic',
+                                                ),
                                           textAlign: TextAlign.left,
                                         ),
                                         Text(
@@ -320,7 +403,8 @@ class Profile_State extends State<Profile> {
                                     context,
                                     SlideRightRoute(
                                       widget: Conversation(
-                                        textStyleDes: widget.textStyleDes,
+                                        textStyleDesEn: widget.textStyleDesEn,
+                                        textStyleDesAr: widget.textStyleDesAr,
                                       ),
                                     ),
                                   );
@@ -344,9 +428,13 @@ class Profile_State extends State<Profile> {
                                             ),
                                             Text(
                                               translator.translate('Chat'),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Montserrat'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      color: Colors.white,
+                                                      fontFamily: 'Montserrat')
+                                                  : widget.textStyleDesAr,
                                             ),
                                           ],
                                         ),
@@ -380,9 +468,13 @@ class Profile_State extends State<Profile> {
                                             ),
                                             Text(
                                               translator.translate('logout'),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Montserrat'),
+                                              style: translator
+                                                          .currentLanguage ==
+                                                      'en'
+                                                  ? TextStyle(
+                                                      color: Colors.white,
+                                                      fontFamily: 'Montserrat')
+                                                  : widget.textStyleDesAr,
                                             ),
                                           ],
                                         ),

@@ -5,10 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 class AddTask extends StatefulWidget {
-  TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
   AddTask({
-    @required this.textStyleTitle,
-    @required this.textStyleDes,
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
   });
   @override
   _AddTaskState createState() => _AddTaskState();
@@ -154,15 +156,14 @@ class _AddTaskState extends State<AddTask> {
           ),
         ),
         labelText: label,
-        labelStyle: TextStyle(
-          color: Color(0XFF1a73e9),
-        ),
+        labelStyle: translator.currentLanguage == 'en'
+            ? TextStyle(color: Color(0XFF1a73e9))
+            : widget.textStyleDesAr,
         border: OutlineInputBorder(
           borderSide: BorderSide(),
         ),
       ),
-
-      maxLines: line,
+      maxLines: null,
       textCapitalization: TextCapitalization.sentences,
       // onChanged: (text) => setState(() {}),
     );
@@ -178,8 +179,11 @@ class _AddTaskState extends State<AddTask> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( translator.translate('addNewTask'),
-          style: widget.textStyleTitle,
+        title: Text(
+          translator.translate('addNewTask'),
+          style: translator.currentLanguage == 'en'
+              ? widget.textStyleTitleEn
+              : widget.textStyleTitleAr,
         ),
         centerTitle: true,
         elevation: 5,
@@ -191,9 +195,7 @@ class _AddTaskState extends State<AddTask> {
               color: Colors.black,
             ),
             onPressed: () {
-print('Muayad Mohammed');
-
-
+              print('Muayad Mohammed');
             },
           )
         ],
@@ -216,25 +218,35 @@ print('Muayad Mohammed');
               Row(
                 children: [
                   Text(
-                     translator.translate('class'),
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    translator.translate('class'),
+                    style: translator.currentLanguage == 'en'
+                        ? TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          )
+                        : widget.textStyleTitleAr,
                   ),
                   SizedBox(
                     width: 15,
                   ),
                   DropdownButton<String>(
                     value: selectedUser,
-                    hint: Text( translator.translate('selectClass'),
-                      style: widget.textStyleDes,
+                    hint: Text(
+                      translator.translate('selectClass'),
+                      style: translator.currentLanguage == 'en'
+                          ? widget.textStyleDesEn
+                          : widget.textStyleDesAr,
                     ),
                     items: items.map<DropdownMenuItem<String>>(
                       (String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value),
+                          child: Text(
+                            value,
+                            style: translator.currentLanguage == 'en'
+                                ? widget.textStyleDesEn
+                                : widget.textStyleDesAr,
+                          ),
                         );
                       },
                     ).toList(),
@@ -248,13 +260,15 @@ print('Muayad Mohammed');
                 height: 20,
               ),
               Container(
-                child: _buildMultilineTextField( translator.translate('subject'), 1),
+                child: _buildMultilineTextField(
+                    translator.translate('subject'), 1),
               ),
               SizedBox(
                 height: 20,
               ),
               Container(
-                child: _buildMultilineTextField( translator.translate('description'), 3),
+                child: _buildMultilineTextField(
+                    translator.translate('description'), 3),
               ),
               SizedBox(
                 height: 20,
@@ -262,10 +276,11 @@ print('Muayad Mohammed');
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text( translator.translate('degree'),
-                    style: TextStyle(
-                      color: Color(0XFF4a4a4a),
-                    ),
+                  Text(
+                    translator.translate('degree'),
+                    style: translator.currentLanguage == 'en'
+                        ? TextStyle(color: Color(0XFF4a4a4a))
+                        : widget.textStyleTitleAr,
                   ),
                   SizedBox(
                     width: 10,
@@ -313,7 +328,7 @@ print('Muayad Mohammed');
                       );
                     },
                     child: Container(
-                      width: 45,
+                      width: 55,
                       height: 40,
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -324,7 +339,9 @@ print('Muayad Mohammed');
                       child: Center(
                         child: Text(
                           translator.translate('date'),
-                          style: widget.textStyleDes,
+                          style: translator.currentLanguage == 'en'
+                              ? widget.textStyleTitleEn
+                              : widget.textStyleTitleAr,
                         ),
                       ),
                     ),
@@ -334,7 +351,9 @@ print('Muayad Mohammed');
                   ),
                   Text(
                     _date,
-                    style: widget.textStyleDes,
+                    style: translator.currentLanguage == 'en'
+                        ? widget.textStyleTitleEn
+                        : widget.textStyleTitleAr,
                   ),
                 ],
               ),
@@ -349,35 +368,52 @@ print('Muayad Mohammed');
                       select(context);
                     },
                     child: Container(
-                      width: 45,
+                      width: 55,
                       height: 40,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey[300]),
                           borderRadius: BorderRadius.circular(5)),
                       child: Center(
                           child: Text(
-                         translator.translate('time'),
-                        style: widget.textStyleDes,
+                        translator.translate('time'),
+                        style: translator.currentLanguage == 'en'
+                            ? widget.textStyleTitleEn
+                            : widget.textStyleTitleAr,
                       )),
                     ),
                   ),
                   SizedBox(
                     width: 20,
                   ),
-                  Text(
-                    m
-                        ? _timeOfDay.hour.toString() +
-                            ' : ' +
-                            _timeOfDay.minute.toString()
-                        : _time + ' ',
-                    style: widget.textStyleDes,
-                  ),
+                  translator.currentLanguage == 'en'
+                      ? Text(
+                          m
+                              ? _timeOfDay.hour.toString() +
+                                  ' : ' +
+                                  _timeOfDay.minute.toString()
+                              : _time + ' ',
+                          style: translator.currentLanguage == 'en'
+                              ? widget.textStyleTitleEn
+                              : widget.textStyleTitleAr,
+                        )
+                      : Text(
+                          m
+                              ? _timeOfDay.minute.toString() +
+                                  ' : ' +
+                                  _timeOfDay.hour.toString()
+                              : _time + ' ',
+                          style: translator.currentLanguage == 'en'
+                              ? widget.textStyleTitleEn
+                              : widget.textStyleTitleAr,
+                        ),
                   SizedBox(
                     width: 5,
                   ),
                   Text(
                     m ? s1 : s2,
-                    style: widget.textStyleDes,
+                    style: translator.currentLanguage == 'en'
+                        ? widget.textStyleDesEn
+                        : widget.textStyleDesAr,
                   ),
                 ],
               ),
@@ -398,7 +434,9 @@ print('Muayad Mohammed');
                         },
                         child: Text(
                           translator.translate('cancel'),
-                          style: widget.textStyleDes,
+                          style: translator.currentLanguage == 'en'
+                              ? widget.textStyleDesEn
+                              : widget.textStyleDesAr,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -419,7 +457,9 @@ print('Muayad Mohammed');
                             child: Center(
                               child: Text(
                                 translator.translate('post'),
-                                style: widget.textStyleDes,
+                                style: translator.currentLanguage == 'en'
+                                    ? widget.textStyleDesEn
+                                    : widget.textStyleDesAr,
                                 textAlign: TextAlign.center,
                               ),
                             ),

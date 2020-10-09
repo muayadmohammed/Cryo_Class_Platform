@@ -1,33 +1,27 @@
 import 'package:finalApp/components/route.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:finalApp/screens/Home/Teacher/Comment.dart';
+import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../navigation_drawer.dart';
-import 'Comment.dart';
-import 'add_subject.dart';
-import 'create_class.dart';
-
-class Home extends StatefulWidget {
-  TextStyle textStyleTitle, textStyleDes, textStyleSearch;
-  String name, desc, link;
-  bool flink;
-  Home({
-    @optionalTypeArgs this.textStyleTitle,
-    @optionalTypeArgs this.textStyleDes,
-    @optionalTypeArgs this.textStyleSearch,
-    @optionalTypeArgs this.name,
-    @optionalTypeArgs this.desc,
-    @optionalTypeArgs this.link,
-    @optionalTypeArgs this.flink,
+class ClassInfo extends StatefulWidget {
+  final TextStyle textStyleTitleEn,
+      textStyleDesEn,
+      textStyleTitleAr,
+      textStyleDesAr;
+  ClassInfo({
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
   });
   @override
-  _HomeState createState() => _HomeState();
+  _ClassInfoState createState() => _ClassInfoState();
 }
 
-class _HomeState extends State<Home> {
+class _ClassInfoState extends State<ClassInfo> {
   int _counter = 0;
   bool like = false;
   void _incrementCounter() {
@@ -48,88 +42,22 @@ class _HomeState extends State<Home> {
     }
   }
 
-  String selectedUser;
-  final List<String> items = <String>[
-    translator.translate('createClass'),
-    translator.translate('addSubject'),
-  ];
-
-  Future<Null> selectClass(String value) async {
-    setState(() {
-      selectedUser = value;
-    });
-  }
-
-  TextStyle textStyleTitleAr = TextStyle(
-    fontSize: 17,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-  );
-  TextStyle textStyleSearchAr = TextStyle(
-    fontFamily: ArabicFonts.Cairo,
-    package: 'google_fonts_arabic',
-    fontWeight: FontWeight.w300,
-    color: Colors.grey[600],
-    fontSize: 16,
-  );
-  TextStyle textStyleDesAr = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: Colors.grey[800],
-    fontFamily: ArabicFonts.Changa,
-    package: 'google_fonts_arabic',
-  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 2,
         title: Text(
-          translator.translate('classTitle'),
-          style: textStyleTitleAr,
+          translator.translate('className'),
+          style: translator.currentLanguage == 'en'
+              ? widget.textStyleTitleEn
+              : widget.textStyleTitleAr,
         ),
         centerTitle: true,
-        actions: [
-          PopupMenuButton<String>(
-            onSelected: (selected) {
-              if (selected == 'Add Subject' || selected == 'اضافة موضوع') {
-                Navigator.push(
-                  context,
-                  SlideRightRoute(
-                    widget: AddSubject(textStyleDes: textStyleDesAr,textStyleTitle:textStyleTitleAr,),
-                  ),
-                );
-              } else {
-                Navigator.push(
-                  context,
-                  SlideRightRoute(
-                    widget: CreateClass(),
-                  ),
-                );
-              }
-            },
-            itemBuilder: (BuildContext context) {
-              return items.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(
-                    choice,
-                    style: translator.currentLanguage == 'en'
-                        ? widget.textStyleDes
-                        : textStyleDesAr,
-                  ),
-                );
-              }).toList();
-            },
-          )
-        ],
-        elevation: 5,
       ),
-      drawer: NavigationDrawer(),
       body: ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 20),
-        itemCount: 10,
+        itemCount: posts.length,
         itemBuilder: (BuildContext context, int index) {
           return Conteant(
             translator.translate('subjectName'),
@@ -199,7 +127,9 @@ class _HomeState extends State<Home> {
                     textAlign: translator.currentLanguage == 'en'
                         ? TextAlign.left
                         : TextAlign.right,
-                    style: widget.textStyleDes,
+                    style: translator.currentLanguage == 'en'
+                        ? widget.textStyleDesEn
+                        : widget.textStyleDesEn,
                   ),
                   SizedBox(
                     height: 10,
@@ -266,8 +196,10 @@ class _HomeState extends State<Home> {
                               context,
                               SlideRightRoute(
                                 widget: Comment(
-                                  textStyleTitle: widget.textStyleTitle,
-                                  textStyleDes: widget.textStyleDes,
+                                  textStyleTitleEn: widget.textStyleTitleEn,
+                                  textStyleDesEn: widget.textStyleDesEn,
+                                  textStyleTitleAr: widget.textStyleTitleAr,
+                                  textStyleDesAr: widget.textStyleDesAr,
                                 ),
                               ),
                             );
@@ -280,8 +212,8 @@ class _HomeState extends State<Home> {
                               Text(
                                 ' ' + translator.translate('comment'),
                                 style: translator.currentLanguage == 'en'
-                                    ? widget.textStyleDes
-                                    : textStyleDesAr,
+                                    ? widget.textStyleDesEn
+                                    : widget.textStyleDesEn,
                               ),
                             ],
                           ),

@@ -7,11 +7,20 @@ import 'package:flutter/material.dart';
 import '../navigation_drawer.dart';
 
 class Chats extends StatefulWidget {
-    TextStyle textStyleTitle, textStyleDes, textStyleSearch;
-  Chats(
-      {@required this.textStyleTitle,
-      @required this.textStyleDes,
-      @required this.textStyleSearch});
+  TextStyle textStyleTitleEn,
+      textStyleDesEn,
+      textStyleSearchEn,
+      textStyleTitleAr,
+      textStyleDesAr,
+      textStyleSearchAr;
+  Chats({
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleSearchEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
+    @required this.textStyleSearchAr,
+  });
   @override
   _ChatsState createState() => _ChatsState();
 }
@@ -33,11 +42,13 @@ class _ChatsState extends State<Chats>
       appBar: AppBar(
         title: TextField(
           decoration: InputDecoration.collapsed(
-            hintText:  translator.translate('search'),
-            hintStyle: widget.textStyleSearch
+            hintText: translator.translate('search'),
+            hintStyle: translator.currentLanguage == 'en'
+                ? widget.textStyleSearchEn
+                : widget.textStyleSearchAr,
           ),
         ),
-       elevation: 4,
+        elevation: 4,
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: Theme.of(context).accentColor,
@@ -45,11 +56,22 @@ class _ChatsState extends State<Chats>
           unselectedLabelColor: Theme.of(context).textTheme.caption.color,
           isScrollable: false,
           tabs: <Widget>[
+          
             Tab(
-              text:  translator.translate("message"),
+              child: Text(
+                translator.translate("message"),
+                style: translator.currentLanguage == 'en'
+                    ? widget.textStyleDesEn
+                    : widget.textStyleDesAr,
+              ),
             ),
             Tab(
-              text:  translator.translate("active"),
+              child: Text(
+                translator.translate("active"),
+                style: translator.currentLanguage == 'en'
+                    ? widget.textStyleDesEn
+                    : widget.textStyleDesAr,
+              ),
             ),
           ],
         ),
@@ -80,8 +102,10 @@ class _ChatsState extends State<Chats>
                 counter: chat['counter'],
                 msg: chat['msg'],
                 time: chat['time'],
-                textStyleTitle: widget.textStyleTitle,
-            textStyleDes: widget.textStyleDes,
+                textStyleTitleEn: widget.textStyleTitleEn,
+                textStyleDesEn: widget.textStyleDesEn,
+                textStyleTitleAr: widget.textStyleTitleAr,
+                textStyleDesAr: widget.textStyleDesEn,
               );
             },
           ),
@@ -107,14 +131,15 @@ class _ChatsState extends State<Chats>
                 counter: activee['counter'],
                 msg: activee['msg'],
                 time: activee['time'],
-                textStyleTitle: widget.textStyleTitle,
-            textStyleDes: widget.textStyleDes,
+                textStyleTitleEn: widget.textStyleTitleEn,
+                textStyleDesEn: widget.textStyleDesEn,
+                textStyleTitleAr: widget.textStyleTitleAr,
+                textStyleDesAr: widget.textStyleDesAr,
               );
             },
           ),
         ],
       ),
-    
     );
   }
 

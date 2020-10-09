@@ -3,6 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 class CreateClass extends StatefulWidget {
+  TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
+  bool teacher;
+  CreateClass({
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
+    @required this.teacher,
+  });
   @override
   _CreateClassState createState() => _CreateClassState();
 }
@@ -12,7 +21,12 @@ class _CreateClassState extends State<CreateClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(translator.translate('createClass')),
+        title: Text(
+          translator.translate('createClass'),
+          style: translator.currentLanguage == 'en'
+              ? widget.textStyleTitleEn
+              : widget.textStyleTitleAr,
+        ),
         centerTitle: true,
         elevation: 5,
       ),
@@ -30,9 +44,11 @@ class _CreateClassState extends State<CreateClass> {
                   ),
                 ),
                 labelText: translator.translate('name'),
-                labelStyle: TextStyle(
-                  color: Color(0XFF1a73e9),
-                ),
+                labelStyle: translator.currentLanguage == 'en'
+                    ? TextStyle(
+                        color: Color(0XFF1a73e9),
+                      )
+                    : widget.textStyleDesAr,
                 border: OutlineInputBorder(
                   borderSide: BorderSide(),
                 ),
@@ -53,10 +69,12 @@ class _CreateClassState extends State<CreateClass> {
                       child: Center(
                           child: Text(
                         translator.translate('linke'),
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20),
+                        style: translator.currentLanguage == 'en'
+                            ? TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 20)
+                            : widget.textStyleTitleAr,
                       )),
                     )),
                 SizedBox(
@@ -64,11 +82,6 @@ class _CreateClassState extends State<CreateClass> {
                 ),
                 Container(
                   height: 40,
-                  // decoration: BoxDecoration(
-                  //   border: Border.all(
-                  //     width: 0,
-                  //   ),
-                  // ),
                   child: GestureDetector(
                     onTap: () {
                       Clipboard.setData(
@@ -107,7 +120,8 @@ class _CreateClassState extends State<CreateClass> {
             Container(
               child: Padding(
                 padding: const EdgeInsets.only(
-                  right: 6,left: 6,
+                  right: 6,
+                  left: 6,
                   bottom: 3,
                 ),
                 child: Row(
@@ -119,7 +133,9 @@ class _CreateClassState extends State<CreateClass> {
                       },
                       child: Text(
                         translator.translate('cancel'),
-                        // style: widget.textStyleDes,
+                        style: translator.currentLanguage == 'en'
+                            ? widget.textStyleDesEn
+                            : widget.textStyleDesAr,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -140,7 +156,9 @@ class _CreateClassState extends State<CreateClass> {
                           child: Center(
                             child: Text(
                               translator.translate('create'),
-                              // style: widget.textStyleDes,
+                              style: translator.currentLanguage == 'en'
+                                  ? widget.textStyleDesEn
+                                  : widget.textStyleDesAr,
                               textAlign: TextAlign.center,
                             ),
                           ),

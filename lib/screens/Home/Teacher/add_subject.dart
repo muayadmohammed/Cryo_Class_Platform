@@ -1,14 +1,19 @@
 import 'dart:ui';
+import 'package:finalApp/components/route.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 import 'home.dart';
 
 class AddSubject extends StatefulWidget {
-  TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
+  bool teacher;
   AddSubject({
-    @required this.textStyleTitle,
-    @required this.textStyleDes,
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
+    @required this.teacher,
   });
   @override
   _AddSubjectState createState() => _AddSubjectState();
@@ -22,7 +27,9 @@ class _AddSubjectState extends State<AddSubject> {
       appBar: AppBar(
         title: Text(
           translator.translate('addSubject'),
-          style: widget.textStyleTitle,
+          style: translator.currentLanguage == 'en'
+              ? widget.textStyleTitleEn
+              : widget.textStyleTitleAr,
         ),
         elevation: 5,
         centerTitle: true,
@@ -59,7 +66,9 @@ class _AddSubjectState extends State<AddSubject> {
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            hintStyle: widget.textStyleDes,
+                            hintStyle: translator.currentLanguage == 'en'
+                                ? widget.textStyleDesEn
+                                : widget.textStyleDesAr,
                           ),
                         ),
                       ),
@@ -79,7 +88,9 @@ class _AddSubjectState extends State<AddSubject> {
                             enabledBorder: InputBorder.none,
                             errorBorder: InputBorder.none,
                             disabledBorder: InputBorder.none,
-                            hintStyle: widget.textStyleDes,
+                            hintStyle: translator.currentLanguage == 'en'
+                                ? widget.textStyleDesEn
+                                : widget.textStyleDesAr,
                           ),
                         ),
                       ),
@@ -102,14 +113,19 @@ class _AddSubjectState extends State<AddSubject> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                Home()));
+                                    Navigator.push(
+                                      context,
+                                      SlideRightRoute(
+                                          widget: Home(
+                                        teacher: widget.teacher,
+                                      )),
+                                    );
                                   },
                                   child: Text(
                                     translator.translate('cancel'),
-                                    style: widget.textStyleDes,
+                                    style: translator.currentLanguage == 'en'
+                                        ? widget.textStyleDesEn
+                                        : widget.textStyleDesAr,
                                   ),
                                 ),
                                 SizedBox(
@@ -119,10 +135,13 @@ class _AddSubjectState extends State<AddSubject> {
                                   padding: const EdgeInsets.only(bottom: 2),
                                   child: InkWell(
                                     onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  Home()));
+                                      Navigator.push(
+                                        context,
+                                        SlideRightRoute(
+                                            widget: Home(
+                                          teacher: widget.teacher,
+                                        )),
+                                      );
                                     },
                                     child: Container(
                                       width: 45,
@@ -134,7 +153,10 @@ class _AddSubjectState extends State<AddSubject> {
                                       child: Center(
                                           child: Text(
                                         translator.translate('post'),
-                                        style: widget.textStyleDes,
+                                        style:
+                                            translator.currentLanguage == 'en'
+                                                ? widget.textStyleDesEn
+                                                : widget.textStyleDesAr,
                                       )),
                                     ),
                                   ),

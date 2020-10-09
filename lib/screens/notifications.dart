@@ -1,4 +1,3 @@
-
 import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
@@ -7,10 +6,14 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import 'navigation_drawer.dart';
 
 class Notifications extends StatefulWidget {
-  TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
+  bool teacher;
   Notifications({
-    @required this.textStyleTitle,
-    @required this.textStyleDes,
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
+    @required this.teacher,
   });
   @override
   _NotificationsState createState() => _NotificationsState();
@@ -22,8 +25,10 @@ class _NotificationsState extends State<Notifications> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-         translator.translate("notifications"),
-          style: widget.textStyleTitle,
+          translator.translate("notifications"),
+          style: translator.currentLanguage == 'en'
+              ? widget.textStyleTitleEn
+              : widget.textStyleTitleAr,
         ),
         centerTitle: true,
       ),
@@ -75,14 +80,27 @@ class _NotificationsState extends State<Notifications> {
                 ],
               ),
               contentPadding: EdgeInsets.all(0),
-              title: Text(notif['notif'], style: widget.textStyleDes),
-              trailing: Text(notif['time'], style: widget.textStyleDes),
+              title: Text(
+                notif['notif'],
+                style: translator.currentLanguage == 'en'
+                    ? widget.textStyleDesEn
+                    : widget.textStyleDesAr,
+              ),
+              trailing: Text(
+                notif['time'],
+                style: translator.currentLanguage == 'en'
+                    ? widget.textStyleDesEn
+                    : widget.textStyleDesAr,
+              ),
               onTap: () {
-  
-                showDialog(
-                    context: context,
-                    builder: (_) => NetworkGiffyDialog(
-                          image: Image.asset('assets/cm0.jpeg',fit: BoxFit.cover,),
+                widget.teacher
+                    ? showDialog(
+                        context: context,
+                        builder: (_) => NetworkGiffyDialog(
+                          image: Image.asset(
+                            'assets/cm0.jpeg',
+                            fit: BoxFit.cover,
+                          ),
                           title: Text('Granny Eating Chocolate',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -93,7 +111,9 @@ class _NotificationsState extends State<Notifications> {
                           ),
                           // entryAnimation: EntryAnimation.BOTTOM_TOP,
                           onOkButtonPressed: () {},
-                        ));
+                        ),
+                      )
+                    : print('Student');
               },
             ),
           );

@@ -6,10 +6,12 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import 'home_tasks.dart';
 
 class Evaluation extends StatefulWidget {
-  TextStyle textStyleTitle, textStyleDes;
+  TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
   Evaluation({
-    @required this.textStyleTitle,
-    @required this.textStyleDes,
+    @required this.textStyleTitleEn,
+    @required this.textStyleDesEn,
+    @required this.textStyleTitleAr,
+    @required this.textStyleDesAr,
   });
   @override
   _EvaluationState createState() => _EvaluationState();
@@ -30,7 +32,9 @@ class _EvaluationState extends State<Evaluation> {
         elevation: 5,
         title: Text(
           translator.translate('evaluation'),
-          style: widget.textStyleTitle,
+          style: translator.currentLanguage == 'en'
+              ? widget.textStyleTitleEn
+              : widget.textStyleTitleAr,
         ),
         centerTitle: true,
       ),
@@ -61,20 +65,24 @@ class _EvaluationState extends State<Evaluation> {
                                 ),
                                 Text(
                                   translator.translate('name'),
-                                  style: widget.textStyleTitle,
+                                  style: translator.currentLanguage == 'en'
+                                      ? widget.textStyleTitleEn
+                                      : widget.textStyleTitleAr,
                                 ),
                                 SizedBox(
                                   height: 20,
                                 ),
-                                Divider(),
+                                // Divider(),
                                 Text(
                                   translator.translate('subject'),
-                                  style: widget.textStyleDes,
+                                  style: translator.currentLanguage == 'en'
+                                      ? widget.textStyleDesEn
+                                      : widget.textStyleDesAr,
                                 ),
                                 SizedBox(
                                   height: 20,
                                 ),
-                                Divider(),
+                                // Divider(),
                                 Container(
                                     margin: EdgeInsets.symmetric(horizontal: 7),
                                     height: 94,
@@ -84,23 +92,26 @@ class _EvaluationState extends State<Evaluation> {
                                     ),
                                     child: Text(
                                       'هنا تعرض الملفات الي رفعها الطالب اللون والحجم يتغير بناء على ملفات الطالب ',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
+                                      style: translator.currentLanguage == 'en'
+                                          ? TextStyle(
+                                              color: Colors.white, fontSize: 20)
+                                          : widget.textStyleDesAr,
                                       textAlign: TextAlign.center,
                                     )),
                                 SizedBox(
                                   height: 20,
                                 ),
-                                Divider(),
+                                // Divider(),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                       translator.translate('degree'),
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        color: Color(0XFF4a4a4a),
-                                      ),
+                                      translator.translate('degree'),
+                                      style: translator.currentLanguage == 'en'
+                                          ? TextStyle(
+                                              fontSize: 17,
+                                              color: Color(0XFF4a4a4a))
+                                          : widget.textStyleDesAr,
                                     ),
                                     SizedBox(
                                       width: 10,
@@ -124,7 +135,7 @@ class _EvaluationState extends State<Evaluation> {
                                     )
                                   ],
                                 ),
-                                Divider(),
+                                // Divider(),
                               ],
                             ),
                           )),
@@ -144,11 +155,16 @@ class _EvaluationState extends State<Evaluation> {
                         children: [
                           InkWell(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
                                   builder: (BuildContext context) => HomeTasks(
-                                        textStyleTitle: widget.textStyleTitle,
-                                        textStyleDes: widget.textStyleDes,
-                                      )));
+                                    textStyleTitleEn: widget.textStyleTitleEn,
+                                    textStyleDesEn: widget.textStyleDesEn,
+                                    textStyleTitleAr: widget.textStyleTitleAr,
+                                    textStyleDesAr: widget.textStyleDesAr,
+                                  ),
+                                ),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -157,11 +173,13 @@ class _EvaluationState extends State<Evaluation> {
                               child: Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: Text(
-                                   translator.translate('cancel'),
+                                  translator.translate('cancel'),
                                   // style: TextStyle(
                                   //   fontSize: 14,
                                   // )
-                                  style: widget.textStyleDes,
+                                  style: translator.currentLanguage == 'en'
+                                    ? widget.textStyleDesEn
+                                    : widget.textStyleDesAr,
                                 ),
                               ),
                             ),
@@ -183,10 +201,12 @@ class _EvaluationState extends State<Evaluation> {
                                     child: Row(
                                   children: [
                                     Text(
-                                       translator.translate('send'),
+                                      translator.translate('send'),
                                       // style: TextStyle(
                                       //     fontSize: 18, color: Colors.blue),
-                                      style: widget.textStyleDes,
+                                      style: translator.currentLanguage == 'en'
+                                    ? widget.textStyleDesEn
+                                    : widget.textStyleDesAr,
                                     ),
                                     SizedBox(
                                       width: 3,

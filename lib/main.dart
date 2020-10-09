@@ -1,3 +1,4 @@
+import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -72,28 +73,19 @@ class _LanguageState extends State<Language>
   Animatable<Color> background = TweenSequence<Color>(
     [
       TweenSequenceItem(
-        weight: 1.0,
+        weight: 0.1,
         tween: ColorTween(
           begin: Color(0XFF076585),
-          end: Color(0XFFfff),
+          end: Color(0XFF4682b4),
         ),
       ),
       TweenSequenceItem(
-        weight: 1.0,
+        weight: 0.1,
         tween: ColorTween(
           begin: Colors.green,
           end: Colors.blue,
         ),
       ),
-      /* 
-   TweenSequenceItem(
-      weight: 1.0,
-      tween: ColorTween(
-        begin: Colors.blue,
-        end: Colors.pink,
-      ),
-    ),
-  */
     ],
   );
   @override
@@ -110,27 +102,25 @@ class _LanguageState extends State<Language>
                 decoration: BoxDecoration(
                   color: background
                       .evaluate(AlwaysStoppedAnimation(_controller.value)),
-                  //   gradient: LinearGradient(
-
-                  //     colors: [
-                  //       Color(0XFF076585),
-                  //       Color(0XFFfff),
-                  //     ],
-                  //     begin: Alignment.topRight,
-                  //     end: Alignment.bottomLeft,
-                  //     tileMode: TileMode.clamp,
-                  //   ),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       translator.translate('language'),
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: translator.currentLanguage == 'en'
+                          ? TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500,
+                            )
+                          : TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: ArabicFonts.Cairo,
+                              package: 'google_fonts_arabic',
+                            ),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(
@@ -143,23 +133,30 @@ class _LanguageState extends State<Language>
                       color: Colors.cyan,
                       child: Text(
                         translator.translate('arabic'),
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: translator.currentLanguage == 'en'
+                            ? TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              )
+                            : TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: ArabicFonts.Cairo,
+                                package: 'google_fonts_arabic',
+                              ),
                       ),
-                      onPressed: () {
-                        translator.setNewLanguage(
-                          context,
-                          newLanguage: 'ar',
-                          remember: true,
-                          restart: false,
-                        );
+                      onPressed: () async {
                         Navigator.push(
                           context,
                           SlideRightRoute(
                             widget: Loading(),
                           ),
+                        );
+                       translator.setNewLanguage(
+                          context,
+                          newLanguage: 'ar',
+                          remember: true,
+                          restart: false,
                         );
                       },
                     ),
@@ -179,17 +176,17 @@ class _LanguageState extends State<Language>
                         ),
                       ),
                       onPressed: () {
-                        translator.setNewLanguage(
-                          context,
-                          newLanguage: 'en',
-                          remember: true,
-                          restart: false,
-                        );
                         Navigator.push(
                           context,
                           SlideRightRoute(
                             widget: Loading(),
                           ),
+                        );
+                        translator.setNewLanguage(
+                          context,
+                          newLanguage: 'en',
+                          remember: true,
+                          restart: false,
                         );
                       },
                     ),
