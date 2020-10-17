@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
-        controller: _pageController,
+        controller: _pageController,  
         onPageChanged: onPageChanged,
         children: <Widget>[
           Chats(
