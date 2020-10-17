@@ -1,4 +1,4 @@
-import 'package:finalApp/components/route.dart';
+import '../components/route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'about.dart';

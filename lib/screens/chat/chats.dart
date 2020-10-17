@@ -1,4 +1,4 @@
-import 'package:finalApp/util/data.dart';
+import '../../util/data.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../chat/chat_item.dart';
@@ -13,6 +13,7 @@ class Chats extends StatefulWidget {
       textStyleTitleAr,
       textStyleDesAr,
       textStyleSearchAr;
+      bool teacher;
   Chats({
     @required this.textStyleTitleEn,
     @required this.textStyleDesEn,
@@ -20,6 +21,7 @@ class Chats extends StatefulWidget {
     @required this.textStyleTitleAr,
     @required this.textStyleDesAr,
     @required this.textStyleSearchAr,
+    @required this.teacher,
   });
   @override
   _ChatsState createState() => _ChatsState();
@@ -106,6 +108,7 @@ class _ChatsState extends State<Chats>
                 textStyleDesEn: widget.textStyleDesEn,
                 textStyleTitleAr: widget.textStyleTitleAr,
                 textStyleDesAr: widget.textStyleDesEn,
+                teacher:widget.teacher,
               );
             },
           ),
@@ -135,6 +138,7 @@ class _ChatsState extends State<Chats>
                 textStyleDesEn: widget.textStyleDesEn,
                 textStyleTitleAr: widget.textStyleTitleAr,
                 textStyleDesAr: widget.textStyleDesAr,
+                teacher:widget.teacher,
               );
             },
           ),

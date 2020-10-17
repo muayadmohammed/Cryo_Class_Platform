@@ -1,5 +1,5 @@
-import 'package:finalApp/components/route.dart';
-import 'package:finalApp/util/data.dart';
+import '../../../components/route.dart';
+import '../../../util/data.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 

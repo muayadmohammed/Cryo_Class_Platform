@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
 import 'home_tasks.dart';
 
 class Evaluation extends StatefulWidget {

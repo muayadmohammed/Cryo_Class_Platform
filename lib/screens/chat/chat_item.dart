@@ -1,4 +1,4 @@
-import 'package:finalApp/components/route.dart';
+import '../../components/route.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../chat/conversation.dart';
@@ -11,6 +11,7 @@ class ChatItem extends StatefulWidget {
   final String msg;
   final bool isOnline;
   final int counter;
+  bool teacher;
   TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
 
   ChatItem({
@@ -25,6 +26,7 @@ class ChatItem extends StatefulWidget {
     @required this.textStyleDesEn,
     @required this.textStyleTitleAr,
     @required this.textStyleDesAr,
+    @required this.teacher,
   }) : super(key: key);
 
   @override
@@ -121,6 +123,7 @@ class _ChatItemState extends State<ChatItem> {
             widget: Conversation(
               textStyleDesEn: widget.textStyleDesEn,
               textStyleDesAr: widget.textStyleDesAr,
+              teacher:widget.teacher,
             ),
           ),
         );

@@ -1,10 +1,8 @@
 import 'package:google_fonts_arabic/fonts.dart';
-
 import 'home_work/Teacher/home_tasks.dart';
 import '../components/icon_badge.dart';
 import 'profile.dart';
 import 'package:flutter/material.dart';
-
 import 'chat/chats.dart';
 import 'Home/Teacher/home.dart';
 import 'notifications.dart';
@@ -67,7 +65,7 @@ class _MainScreenState extends State<MainScreen> {
         onPageChanged: onPageChanged,
         children: <Widget>[
           Chats(
-            // teacher: teacher,
+            teacher:widget.teacher,
             textStyleTitleEn: textStyleTitleEn,
             textStyleDesEn: textStyleDesEn,
             textStyleSearchEn: textStyleSearchEn,

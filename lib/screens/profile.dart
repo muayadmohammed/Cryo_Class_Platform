@@ -1,8 +1,7 @@
-import 'package:finalApp/components/route.dart';
+import '../components/route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
 import 'Auth/Login.dart';
 import 'navigation_drawer.dart';
 import 'chat/conversation.dart';

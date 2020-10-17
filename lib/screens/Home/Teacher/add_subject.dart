@@ -1,8 +1,7 @@
 import 'dart:ui';
-import 'package:finalApp/components/route.dart';
+import '../../../components/route.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
 import 'home.dart';
 
 class AddSubject extends StatefulWidget {

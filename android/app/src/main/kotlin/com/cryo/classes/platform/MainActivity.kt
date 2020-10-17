@@ -1,4 +1,4 @@
-package com.example.finalApp
+package com.cryo.classes.platform
 
 import io.flutter.embedding.android.FlutterActivity
 

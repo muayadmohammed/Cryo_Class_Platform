@@ -1,15 +1,11 @@
-import 'package:finalApp/components/route.dart';
-import 'package:finalApp/screens/Home/Student/post_class.dart';
-import 'package:finalApp/screens/main_screen.dart';
-import 'package:finalApp/util/data.dart';
+import '../../../components/route.dart';
+import '../../../screens/Home/Student/post_class.dart';
+import '../../../util/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../navigation_drawer.dart';
-import 'Comment.dart';
 import '../Student/add_class.dart';
 import 'add_subject.dart';
 import 'create_class.dart';

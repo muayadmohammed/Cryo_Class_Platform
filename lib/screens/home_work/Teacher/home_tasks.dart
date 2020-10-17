@@ -1,15 +1,13 @@
-import 'package:finalApp/components/route.dart';
-import 'package:finalApp/screens/home_work/Student/Missing.dart';
-import 'package:finalApp/screens/home_work/Student/required.dart';
+import '../../../components/route.dart';
+import '../../../screens/home_work/Student/Missing.dart';
+import '../../../screens/home_work/Student/complete.dart';
+import '../../../screens/home_work/Student/required.dart';
+import '../../../util/data.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
 import '../../navigation_drawer.dart';
 import 'add_task.dart';
 import 'task.dart';
-
-import 'package:finalApp/util/data.dart';
 import 'package:flutter/material.dart';
-
 import 'done.dart';
 
 class HomeTasks extends StatefulWidget {
@@ -33,9 +31,14 @@ class _HomeTasksState extends State<HomeTasks>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, initialIndex: 0, length: 2);
+    _tabController = TabController(
+      vsync: this,
+      initialIndex: 0,
+      length: widget.teacher ? 2 : 3,
+    );
   }
 
+  int x = 90;
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -130,6 +133,14 @@ class _HomeTasksState extends State<HomeTasks>
                           : widget.textStyleDesAr,
                     ),
                   ),
+                  Tab(
+                    child: Text(
+                      translator.translate("complete"),
+                      style: translator.currentLanguage == 'en'
+                          ? widget.textStyleDesEn
+                          : widget.textStyleDesAr,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -219,13 +230,37 @@ class _HomeTasksState extends State<HomeTasks>
                       ),
                     );
                   },
-                  itemCount: active.length,
+                  itemCount: 20,
                   itemBuilder: (BuildContext context, int index) {
                     return Misssing(
-                                          textStyleTitleAr: widget.textStyleTitleAr,
-                      textStyleDesAr:widget. textStyleDesAr,
-                      textStyleTitleEn:widget. textStyleTitleEn,
-                      textStyleDesEn:widget. textStyleDesEn,
+                      textStyleTitleAr: widget.textStyleTitleAr,
+                      textStyleDesAr: widget.textStyleDesAr,
+                      textStyleTitleEn: widget.textStyleTitleEn,
+                      textStyleDesEn: widget.textStyleDesEn,
+                    );
+                  },
+                ),
+                ListView.separated(
+                  padding: EdgeInsets.all(10),
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        height: 0.5,
+                        width: MediaQuery.of(context).size.width / 1.3,
+                        child: Divider(),
+                      ),
+                    );
+                  },
+                  itemCount: 20,
+                  itemBuilder: (BuildContext context, int index) {
+                    Map activee = active1[index];
+                    return Complete(
+                      counter: activee['counter'],
+                      textStyleTitleAr: widget.textStyleTitleAr,
+                      textStyleDesAr: widget.textStyleDesAr,
+                      textStyleTitleEn: widget.textStyleTitleEn,
+                      textStyleDesEn: widget.textStyleDesEn,
                     );
                   },
                 ),

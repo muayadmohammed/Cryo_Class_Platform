@@ -1,8 +1,7 @@
-import 'package:finalApp/components/route.dart';
+import '../../components/route.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
 import '../main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,26 +9,13 @@ import 'components/Background.dart';
 import 'components/CustomInputFeild.dart';
 
 class Login extends StatefulWidget {
-  // bool isLoading;
-  // Login({this.isLoading});
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
   @override
-  // bool isLoading = true;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   Future.delayed(const Duration(seconds: 5), () {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //   });
-  // }
   bool valuefirst = false;
   bool valuesecond = false;
 
@@ -37,9 +23,6 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    // if (isLoading == true) {
-    //   return Loading();
-    // } else {
     return Background(
       size: size,
       child: SafeArea(
@@ -90,19 +73,22 @@ class _LoginState extends State<Login> {
                   ),
                   Text(
                     translator.translate('teacher'),
-                    style:translator.currentLanguage=='en'? TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white,
-                    ):TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontFamily: ArabicFonts.Cairo,
-                          package: 'google_fonts_arabic',
-                        ),
+                    style: translator.currentLanguage == 'en'
+                        ? TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.white,
+                          )
+                        : TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: ArabicFonts.Cairo,
+                            package: 'google_fonts_arabic',
+                          ),
                   ),
                   Checkbox(
-                    checkColor: Colors.greenAccent,mouseCursor: MouseCursor.defer,
+                    checkColor: Colors.greenAccent,
+                    mouseCursor: MouseCursor.defer,
                     activeColor: Colors.red,
                     focusColor: Colors.white,
                     hoverColor: Colors.white,
@@ -115,7 +101,11 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              SizedBox(height: size.height / 29),
+              SizedBox(
+                height: translator.currentLanguage == 'en'
+                    ? size.height / 8
+                    : size.height / 29,
+              ),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Align(

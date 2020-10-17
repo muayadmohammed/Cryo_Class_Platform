@@ -35,8 +35,6 @@ class _CommentState extends State<Comment> {
             children: <Widget>[
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.start,
-                // mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Divider(
                     height: 0,

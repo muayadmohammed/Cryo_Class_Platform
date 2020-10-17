@@ -1,9 +1,7 @@
-import 'package:finalApp/components/route.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
-import '../../profile.dart';
 import 'class_info.dart';
 
 class PostClass extends StatefulWidget {
@@ -40,29 +38,7 @@ class _PostClassState extends State<PostClass> {
           SizedBox(
             height: 8,
           ),
-          // ListTile(
-          //   // leading: CircleAvatar(
-          //   //   backgroundImage: AssetImage(
-          //   //     "${widget.dp}",
-          //   //   ),
-          //   // ),
-          //   contentPadding: EdgeInsets.all(0),
-          //   // title: InkWell(
-          //   //   onTap: () =>Navigator.push(
-          //   //       context,
-          //   //       SlideRightRoute(
-          //   //         widget: Profile(
-          //   //             textStyleDesEn: widget.textStyleDesEn,
-          //   //             textStyleDesAr: widget.textStyleTitleAr,
-          //   //             teacher: widget.teacher,
-          //   //           )
-          //   //       ),
-          //   //     ),
-          //   //   // child: Text(
 
-          //   //   // ),
-          //   // ),
-          // ),
           InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(

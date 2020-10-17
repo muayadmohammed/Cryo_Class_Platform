@@ -1,4 +1,4 @@
-import 'package:finalApp/components/route.dart';
+import '../../../components/route.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
@@ -20,7 +20,6 @@ class Required extends StatefulWidget {
 class _RequiredState extends State<Required> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return ListView.builder(
         physics: NeverScrollableScrollPhysics(),

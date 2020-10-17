@@ -121,6 +121,11 @@ List active = List.generate(
           "time": "${random.nextInt(50)} min ago",
           "isOnline": random.nextBool(),
         });
+        List active1 = List.generate(
+    13,
+    (index) => {
+          "counter": random.nextInt(10),
+        });
 
 List types = ["text", "image"];
 List conversation = List.generate(

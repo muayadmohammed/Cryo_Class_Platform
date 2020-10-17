@@ -1,17 +1,17 @@
 import 'dart:math';
-
-import 'package:finalApp/util/data.dart';
+import '../../util/data.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-
 import '../chat/chat_bubble.dart';
 import '../profile.dart';
 import 'package:flutter/material.dart';
 
 class Conversation extends StatefulWidget {
   TextStyle textStyleDesEn, textStyleDesAr;
+  bool teacher;
   Conversation({
     @required this.textStyleDesEn,
     @required this.textStyleDesAr,
+    @required this.teacher,
   });
   @override
   _ConversationState createState() => _ConversationState();
@@ -77,7 +77,7 @@ class _ConversationState extends State<Conversation> {
             Navigator.of(context, rootNavigator: true).push(
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return Profile(
+                  return Profile(teacher: widget.teacher,
                     textStyleDesEn: widget.textStyleDesEn,
                     textStyleDesAr: widget.textStyleDesAr,
                   );

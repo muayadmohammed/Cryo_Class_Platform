@@ -62,5 +62,6 @@
     "emailProfil": "Email : ",
     "Chat": "Chat",
     "logout": "Log out",
-    "notifications":"Notifications"
+    "notifications":"Notifications",
+    "complete":"Complete"
 }

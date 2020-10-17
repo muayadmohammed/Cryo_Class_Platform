@@ -16,7 +16,7 @@ class Misssing extends StatefulWidget {
 class _MisssingState extends State<Misssing> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+
 
     return ListView.builder(
         physics: NeverScrollableScrollPhysics(),

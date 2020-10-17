@@ -1,7 +1,5 @@
 import 'package:google_fonts_arabic/fonts.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-import 'package:shimmer/shimmer.dart';
-
 import './screens/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

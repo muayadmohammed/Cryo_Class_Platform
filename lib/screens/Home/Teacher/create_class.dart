@@ -36,7 +36,6 @@ class _CreateClassState extends State<CreateClass> {
           children: [
             TextFormField(
               decoration: InputDecoration(
-                // hintText: 'Name',
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Color(0XFF1a73e9),
@@ -55,7 +54,6 @@ class _CreateClassState extends State<CreateClass> {
               ),
 
               textCapitalization: TextCapitalization.sentences,
-              // onChanged: (text) => setState(() {}),
             ),
             SizedBox(
               height: 20,
