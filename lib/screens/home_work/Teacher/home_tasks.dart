@@ -184,6 +184,7 @@ class _HomeTasksState extends State<HomeTasks>
                   itemCount: active.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Done(
+                      teacher: widget.teacher,
                       textStyleTitleAr: widget.textStyleTitleAr,
                       textStyleDesAr: widget.textStyleDesAr,
                       textStyleTitleEn: widget.textStyleTitleEn,

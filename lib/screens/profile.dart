@@ -172,6 +172,7 @@ class Profile_State extends State<Profile> {
                                     context,
                                     SlideRightRoute(
                                       widget: Conversation(
+                                        teacher: widget.teacher,
                                         textStyleDesEn: widget.textStyleDesEn,
                                         textStyleDesAr: widget.textStyleDesAr,
                                       ),
@@ -402,6 +403,7 @@ class Profile_State extends State<Profile> {
                                     context,
                                     SlideRightRoute(
                                       widget: Conversation(
+                                        teacher: widget.teacher,
                                         textStyleDesEn: widget.textStyleDesEn,
                                         textStyleDesAr: widget.textStyleDesAr,
                                       ),

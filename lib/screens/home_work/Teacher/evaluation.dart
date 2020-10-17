@@ -5,11 +5,13 @@ import 'home_tasks.dart';
 
 class Evaluation extends StatefulWidget {
   TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
+  bool teacher;
   Evaluation({
     @required this.textStyleTitleEn,
     @required this.textStyleDesEn,
     @required this.textStyleTitleAr,
     @required this.textStyleDesAr,
+    @required this.teacher,
   });
   @override
   _EvaluationState createState() => _EvaluationState();
@@ -155,7 +157,7 @@ class _EvaluationState extends State<Evaluation> {
                             onTap: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) => HomeTasks(
+                                  builder: (BuildContext context) => HomeTasks(teacher: widget.teacher,
                                     textStyleTitleEn: widget.textStyleTitleEn,
                                     textStyleDesEn: widget.textStyleDesEn,
                                     textStyleTitleAr: widget.textStyleTitleAr,

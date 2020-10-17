@@ -7,11 +7,13 @@ import 'evaluation.dart';
 
 class Done extends StatefulWidget {
   TextStyle textStyleTitleEn, textStyleDesEn, textStyleTitleAr, textStyleDesAr;
+   bool teacher;
   Done({
     @required this.textStyleTitleEn,
     @required this.textStyleDesEn,
     @required this.textStyleTitleAr,
     @required this.textStyleDesAr,
+    @required this.teacher,
   });
   @override
   _DoneState createState() => _DoneState();
@@ -66,6 +68,7 @@ class _DoneState extends State<Done> {
                       context,
                       SlideRightRoute(
                         widget: Evaluation(
+                          teacher: widget.teacher,
                           textStyleDesAr: widget.textStyleDesAr,
                           textStyleTitleAr: widget.textStyleTitleAr,
                           textStyleTitleEn: widget.textStyleTitleEn,
