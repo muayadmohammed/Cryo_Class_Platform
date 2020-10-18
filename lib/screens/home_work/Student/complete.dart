@@ -73,7 +73,7 @@ class _CompleteState extends State<Complete> {
                             margin: const EdgeInsets.symmetric(horizontal: 10),
                             padding: EdgeInsets.all(1),
                             decoration: BoxDecoration(
-                              color: _color(widget.counter)
+                              color: widget.counter>=4
                                   ? Colors.red
                                   : Colors.cyan,
                               borderRadius: BorderRadius.circular(13),
@@ -104,11 +104,5 @@ class _CompleteState extends State<Complete> {
     );
   }
 
-  bool _color(int drgree) {
-    if (drgree > 4) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+
 }
